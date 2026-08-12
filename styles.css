@@ -812,6 +812,7 @@ a {
 #pricing {
     background-color: var(--navy-primary);
     color: var(--white);
+    border-bottom: none;
 }
 
 #pricing .section-header {
@@ -968,6 +969,7 @@ a {
     position: relative;
     box-sizing: border-box;
     overflow: hidden;
+    background-color: var(--navy-primary);
 }
 
 .contact-content-area {
@@ -1151,6 +1153,14 @@ a {
 
 /* Responsive Overrides for Mobile & Small Viewports */
 @media (max-width: 768px) {
+    #pricing {
+        border-bottom: none !important;
+    }
+
+    .contact-footer-wrapper {
+        background-color: var(--navy-primary) !important;
+    }
+
     .section,
     .contact-footer-wrapper {
         height: auto !important;
