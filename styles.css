@@ -165,6 +165,7 @@ a {
 }
 
 .header-container {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -480,22 +481,44 @@ a {
 
     .logo {
         gap: 0.5rem;
+        max-width: calc(100% - 55px);
+        overflow: hidden;
     }
 
     .logo-img {
-        height: 48px !important;
+        height: 44px !important;
+        flex-shrink: 0;
     }
 
     #header.scrolled .logo-img {
-        height: 42px !important;
+        height: 40px !important;
     }
 
     .logo-title {
-        font-size: 1.2rem !important;
+        font-size: 1.1rem !important;
+        white-space: nowrap;
     }
 
     .logo-subtitle {
-        font-size: 0.68rem !important;
+        font-size: 0.65rem !important;
+        white-space: nowrap;
+    }
+
+    .mobile-menu-btn {
+        display: flex !important;
+        position: absolute !important;
+        right: 1rem !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 1001 !important;
+        padding: 0.5rem !important;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .mobile-menu-btn span {
+        background-color: var(--navy-dark) !important;
     }
 
     .main-nav {
