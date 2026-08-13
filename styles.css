@@ -655,6 +655,7 @@ a {
     width: 100%;
     max-height: min(440px, 48vh);
     object-fit: cover;
+    object-position: top center;
     position: relative;
     z-index: 2;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
