@@ -653,9 +653,9 @@ a {
 .about-image img {
     border-radius: 8px;
     width: 100%;
-    max-height: min(440px, 48vh);
+    max-height: min(530px, 58vh);
     object-fit: cover;
-    object-position: top center;
+    object-position: 50% 10%;
     position: relative;
     z-index: 2;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -1242,7 +1242,8 @@ a {
     }
 
     .about-image img {
-        max-height: 280px !important;
+        max-height: 380px !important;
+        object-position: 50% 10% !important;
     }
 
     .about-content h2 {
@@ -1353,7 +1354,8 @@ a {
     }
 
     .about-image img {
-        max-height: min(580px, 54vh);
+        max-height: min(620px, 62vh);
+        object-position: 50% 10%;
     }
 
     .about-content h2 {
