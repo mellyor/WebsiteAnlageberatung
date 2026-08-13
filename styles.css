@@ -340,7 +340,7 @@ a {
 
 .hero-content {
     color: var(--white);
-    max-width: 800px;
+    max-width: 750px;
     margin: 0;
 }
 
@@ -354,21 +354,23 @@ a {
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .hero h1 {
-    font-size: 4.5rem;
+    font-size: clamp(3.2rem, 5.8vh, 4.2rem);
     color: var(--white);
     margin-bottom: 1.5rem;
     font-weight: 700;
+    line-height: 1.18;
 }
 
 .hero p {
-    font-size: 1.25rem;
+    font-size: 1.18rem;
     color: var(--light-blue);
-    margin-bottom: 2.5rem;
-    max-width: 600px;
+    margin-bottom: 2.25rem;
+    max-width: 680px;
+    line-height: 1.65;
 }
 
 .hero-actions {
@@ -1327,14 +1329,14 @@ a {
     }
 
     .hero h1 {
-        font-size: clamp(4.5rem, 7.5vh, 5.8rem);
-        margin-bottom: 2rem;
+        font-size: clamp(3.5rem, 6.2vh, 4.6rem);
+        margin-bottom: 1.75rem;
     }
 
     .hero p {
-        font-size: 1.35rem;
+        font-size: 1.25rem;
         line-height: 1.7;
-        margin-bottom: 3rem;
+        margin-bottom: 2.5rem;
     }
 
     .hero-actions {
@@ -1495,14 +1497,14 @@ a {
     }
 
     .hero h1 {
-        font-size: clamp(5rem, 8.5vh, 6.5rem);
-        margin-bottom: 2.25rem;
+        font-size: clamp(3.8rem, 6.6vh, 5.2rem);
+        margin-bottom: 2rem;
     }
 
     .hero p {
-        font-size: 1.5rem;
+        font-size: 1.32rem;
         line-height: 1.75;
-        margin-bottom: 3.25rem;
+        margin-bottom: 2.75rem;
     }
 
     .hero-actions {
