@@ -643,7 +643,7 @@ a {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3.5rem;
-    align-items: center;
+    align-items: start;
 }
 
 .about-image {
@@ -653,7 +653,8 @@ a {
 .about-image img {
     border-radius: 8px;
     width: 100%;
-    max-height: min(530px, 58vh);
+    height: 555px;
+    max-height: 555px;
     object-fit: cover;
     object-position: 50% 10%;
     position: relative;
@@ -703,6 +704,10 @@ a {
     font-weight: 500;
     color: var(--white);
     font-size: 0.98rem;
+}
+
+.features-list li:last-child {
+    margin-bottom: 0;
 }
 
 .features-list li .icon-check {
@@ -1354,7 +1359,8 @@ a {
     }
 
     .about-image img {
-        max-height: min(620px, 62vh);
+        height: 585px;
+        max-height: 585px;
         object-position: 50% 10%;
     }
 
@@ -1526,7 +1532,8 @@ a {
     }
 
     .about-image img {
-        max-height: min(680px, 60vh);
+        height: 610px;
+        max-height: 610px;
     }
 
     .about-content h2 {
