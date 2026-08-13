@@ -1077,8 +1077,9 @@ a {
 }
 
 .form-group textarea {
-    height: 55px;
-    resize: none;
+    min-height: 88px;
+    height: 88px;
+    resize: vertical;
 }
 
 .form-group input:focus,
