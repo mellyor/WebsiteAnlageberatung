@@ -457,7 +457,7 @@ a {
     }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px), (hover: none) and (pointer: coarse) {
     html {
         scroll-snap-type: none !important;
     }
@@ -466,6 +466,9 @@ a {
     .scroll-indicator-up {
         display: none !important;
     }
+}
+
+@media (max-width: 1024px) {
 
     #header {
         height: 70px;
