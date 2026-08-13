@@ -1303,3 +1303,408 @@ a {
         scroll-snap-type: y proximity;
     }
 }
+
+/* --- High Vertical Screen Sizing (Height-Only Scaling) --- */
+@media (min-height: 950px) {
+    .badge {
+        margin-bottom: 2.25rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(4.5rem, 7.5vh, 5.8rem);
+        margin-bottom: 2rem;
+    }
+
+    .hero p {
+        font-size: 1.35rem;
+        line-height: 1.7;
+        margin-bottom: 3rem;
+    }
+
+    .hero-actions {
+        gap: 1.5rem;
+    }
+
+    .section-header {
+        margin-bottom: 3.5rem;
+    }
+
+    .section-header h2 {
+        font-size: clamp(2.4rem, 4.5vh, 3.2rem);
+        margin-bottom: 1.25rem;
+    }
+
+    .section-header p {
+        font-size: 1.15rem;
+    }
+
+    .about-grid {
+        gap: 3.5rem;
+    }
+
+    .about-image img {
+        max-height: min(580px, 54vh);
+    }
+
+    .about-content h2 {
+        font-size: clamp(2.2rem, 4.2vh, 3rem);
+        margin-bottom: 1.5rem;
+    }
+
+    .about-content .lead {
+        font-size: 1.3rem;
+        margin-bottom: 1.4rem;
+    }
+
+    .about-content p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .features-list {
+        margin-top: 2rem;
+    }
+
+    .features-list li {
+        font-size: 1.1rem;
+        margin-bottom: 1.1rem;
+    }
+
+    .service-card {
+        padding: min(4.5rem, 7.5vh) 2.25rem;
+    }
+
+    .service-icon {
+        width: 76px;
+        height: 76px;
+        margin-bottom: 2rem;
+    }
+
+    .service-icon svg {
+        width: 44px;
+        height: 44px;
+    }
+
+    .service-card h3 {
+        font-size: 1.65rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .service-card p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+    }
+
+    .pricing-grid {
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .pricing-card {
+        padding: min(3.25rem, 5vh) 2rem;
+    }
+
+    .pricing-header {
+        margin-bottom: 1.75rem;
+        padding-bottom: 1.25rem;
+    }
+
+    .pricing-header h3 {
+        font-size: 1.25rem;
+    }
+
+    .pricing-header .price {
+        font-size: 2.5rem;
+    }
+
+    .pricing-features {
+        margin-bottom: 2rem;
+    }
+
+    .pricing-features li {
+        font-size: 1.05rem;
+        margin-bottom: 0.9rem;
+    }
+
+    .contact-item {
+        margin-bottom: 1.5rem;
+        gap: 1.25rem;
+    }
+
+    .contact-details {
+        margin-top: 2rem;
+    }
+
+    .contact-form-wrapper {
+        padding: 2.25rem 2.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.1rem;
+    }
+
+    .form-group label {
+        margin-bottom: 0.4rem;
+    }
+
+    .form-group input {
+        padding: 0.75rem 1rem;
+    }
+
+    .form-group textarea {
+        height: 95px;
+        padding: 0.75rem 1rem;
+    }
+
+    .checkbox-group {
+        margin-bottom: 1.2rem;
+    }
+
+    .footer {
+        padding: 0.75rem 0 0.4rem 0;
+    }
+
+    .footer-grid {
+        margin-bottom: 0.4rem;
+    }
+}
+
+@media (min-height: 1250px) {
+    .badge {
+        margin-bottom: 2.5rem;
+        font-size: 1.05rem;
+        padding: 0.65rem 1.3rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(5rem, 8.5vh, 6.5rem);
+        margin-bottom: 2.25rem;
+    }
+
+    .hero p {
+        font-size: 1.5rem;
+        line-height: 1.75;
+        margin-bottom: 3.25rem;
+    }
+
+    .hero-actions {
+        gap: 1.75rem;
+    }
+
+    .hero-actions .btn {
+        padding: 1.25rem 2.5rem;
+        font-size: 1.2rem;
+    }
+
+    .section-header {
+        margin-bottom: 4.5rem;
+    }
+
+    .section-header h2 {
+        font-size: clamp(2.6rem, 5vh, 3.6rem);
+        margin-bottom: 1.4rem;
+    }
+
+    .section-header p {
+        font-size: 1.25rem;
+    }
+
+    .about-grid {
+        gap: 4.5rem;
+    }
+
+    .about-image img {
+        max-height: min(680px, 60vh);
+    }
+
+    .about-content h2 {
+        font-size: clamp(2.4rem, 4.6vh, 3.4rem);
+        margin-bottom: 1.6rem;
+    }
+
+    .about-content .lead {
+        font-size: 1.4rem;
+        margin-bottom: 1.6rem;
+    }
+
+    .about-content p {
+        font-size: 1.18rem;
+        margin-bottom: 1.6rem;
+        line-height: 1.75;
+    }
+
+    .features-list li {
+        font-size: 1.18rem;
+        margin-bottom: 1.2rem;
+        padding-left: 2.25rem;
+    }
+
+    .features-list li .icon-check {
+        width: 24px;
+        height: 24px;
+    }
+
+    .services-grid {
+        gap: 2.5rem;
+    }
+
+    .service-card {
+        padding: min(5.5rem, 9vh) 2.5rem;
+    }
+
+    .service-icon {
+        margin-bottom: 2.25rem;
+        width: 84px;
+        height: 84px;
+    }
+
+    .service-icon svg {
+        width: 48px;
+        height: 48px;
+    }
+
+    .service-card h3 {
+        font-size: 1.85rem;
+        margin-bottom: 1.3rem;
+    }
+
+    .service-card p {
+        font-size: 1.18rem;
+        line-height: 1.8;
+    }
+
+    .pricing-grid {
+        gap: 2.25rem;
+        margin-top: 2.25rem;
+    }
+
+    .pricing-card {
+        padding: min(4.25rem, 6.2vh) 2.25rem;
+    }
+
+    .pricing-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1.4rem;
+    }
+
+    .pricing-header h3 {
+        font-size: 1.35rem;
+    }
+
+    .pricing-header .price {
+        font-size: 2.8rem;
+    }
+
+    .pricing-header .price span {
+        font-size: 1.15rem;
+    }
+
+    .pricing-header .duration {
+        font-size: 1rem;
+    }
+
+    .pricing-features {
+        margin-bottom: 2.25rem;
+    }
+
+    .pricing-features li {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        padding-left: 2.1rem;
+    }
+
+    .popular-badge {
+        font-size: 0.9rem;
+        padding: 0.5rem 1.6rem;
+        top: -15px;
+    }
+
+    .pricing-card .btn {
+        padding: 1.15rem 1.85rem;
+        font-size: 1.1rem;
+    }
+
+    .contact-item {
+        margin-bottom: 1.85rem;
+        gap: 1.35rem;
+    }
+
+    .contact-item h4 {
+        font-size: 1.2rem;
+    }
+
+    .contact-item p {
+        font-size: 1.05rem;
+    }
+
+    .icon-circle {
+        width: 46px;
+        height: 46px;
+    }
+
+    .icon-circle svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .contact-details {
+        margin-top: 2.25rem;
+    }
+
+    .contact-form-wrapper {
+        padding: 2.5rem 2.75rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 0.45rem;
+    }
+
+    .form-group input {
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+    }
+
+    .form-group textarea {
+        height: 110px;
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+    }
+
+    .checkbox-group {
+        margin-bottom: 1.35rem;
+    }
+
+    .checkbox-group label {
+        font-size: 0.85rem;
+    }
+
+    .footer {
+        padding: 0.85rem 0 0.5rem 0;
+    }
+
+    .footer-grid {
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-brand p {
+        font-size: 0.9rem;
+        max-width: 360px;
+    }
+
+    .footer-links h4 {
+        font-size: 1rem;
+    }
+
+    .footer-links a {
+        font-size: 0.85rem;
+    }
+
+    .footer-bottom {
+        font-size: 0.8rem;
+    }
+}
