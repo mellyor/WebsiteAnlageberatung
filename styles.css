@@ -457,7 +457,7 @@ a {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     html {
         scroll-snap-type: none !important;
     }
@@ -1174,8 +1174,8 @@ a {
     font-size: 0.78rem;
 }
 
-/* Responsive Overrides for Mobile & Small Viewports */
-@media (max-width: 768px) {
+/* Responsive Overrides for Mobile & Tablet Viewports */
+@media (max-width: 1024px) {
     .hero {
         height: auto !important;
         min-height: calc(100vh - 70px) !important;
@@ -1290,7 +1290,7 @@ a {
     }
 }
 
-@media (max-width: 992px), (max-height: 700px) {
+@media (max-width: 1024px), (max-height: 700px) {
     .section,
     .contact-footer-wrapper {
         height: auto;
