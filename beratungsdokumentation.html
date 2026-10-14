@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beratungsdokumentation & Geeignetheitserklärung | Rheinfinanz Anlageberatung GmbH</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --navy-dark: #0A192F;
+            --navy-primary: #112D4E;
+            --navy-surface: #1B3B6F;
+            --gold: #D4AF37;
+            --gold-light: #F3E5AB;
+            --gold-dark: #AA8825;
+            --text-dark: #1F2937;
+            --text-muted: #4B5563;
+            --text-light: #6B7280;
+            --bg-page: #FFFFFF;
+            --bg-card: #F9FAFB;
+            --border-light: #E5E7EB;
+            --border-gold: rgba(212, 175, 55, 0.45);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: #E2E8F0;
+            line-height: 1.38;
+            -webkit-font-smoothing: antialiased;
+            padding: 30px 0 60px;
+        }
+
+        /* DIN A4 Container Setup */
+        .page {
+            width: 210mm;
+            height: 296mm;
+            max-height: 296mm;
+            margin: 0 auto 30px;
+            background: var(--bg-page);
+            padding: 12mm 16mm 10mm;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        /* Header Area */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-gold);
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .brand-logo-full {
+            height: 44px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .header-meta {
+            text-align: right;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        .header-meta strong {
+            color: var(--navy-primary);
+            font-weight: 600;
+        }
+
+        /* Title Area */
+        .doc-title-bar {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-primary) 100%);
+            color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            margin-bottom: 9px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .doc-title-bar h2 {
+            font-family: var(--font-heading);
+            font-size: 1.08rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: white;
+        }
+
+        .doc-subtitle-badge {
+            font-size: 0.68rem;
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-light);
+            border: 1px solid var(--gold);
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        /* Section Styling */
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-left: 3.5px solid var(--navy-primary);
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-bottom: 9px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .section-num {
+            background: var(--navy-primary);
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 0.7rem;
+            font-weight: 700;
+            width: 19px;
+            height: 19px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            letter-spacing: -0.01em;
+        }
+
+        /* Form Fields & Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 14px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 6px 12px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 6px 10px;
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .field-label {
+            font-size: 0.69rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .field-input {
+            border: 1px solid var(--border-light);
+            background: white;
+            border-radius: 4px;
+            padding: 3px 8px;
+            font-size: 0.8rem;
+            color: var(--text-dark);
+            height: 25px;
+            width: 100%;
+            outline: none;
+            font-family: var(--font-body);
+            transition: border-color 0.2s;
+        }
+
+        .field-input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Checkbox & Options */
+        .options-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px 14px;
+            margin-top: 2px;
+        }
+
+        .checkbox-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.77rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .checkbox-input {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 13px;
+            height: 13px;
+            border: 1.5px solid var(--navy-primary);
+            border-radius: 3px;
+            background: white;
+            cursor: pointer;
+            position: relative;
+            flex-shrink: 0;
+            vertical-align: middle;
+            transition: all 0.15s ease;
+        }
+
+        .checkbox-input:checked {
+            background-color: var(--navy-primary);
+            border-color: var(--navy-primary);
+        }
+
+        .checkbox-input:checked::after {
+            content: '';
+            position: absolute;
+            left: 3px;
+            top: 0.5px;
+            width: 3.5px;
+            height: 6.5px;
+            border: solid var(--gold);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        /* Clean Table Styling */
+        .doc-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.74rem;
+            margin-top: 4px;
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .doc-table th {
+            background: rgba(17, 45, 78, 0.08);
+            color: var(--navy-dark);
+            font-weight: 600;
+            padding: 5px 8px;
+            text-align: left;
+            border-bottom: 1.5px solid var(--border-light);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .doc-table td {
+            padding: 5px 8px;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-dark);
+            vertical-align: middle;
+        }
+
+        .doc-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Gold Highlight Callout */
+        .callout-gold {
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 5px;
+            padding: 8px 12px;
+            margin-top: 6px;
+        }
+
+        .callout-navy {
+            background: rgba(17, 45, 78, 0.04);
+            border: 1px solid rgba(17, 45, 78, 0.15);
+            border-radius: 5px;
+            padding: 8px 12px;
+            margin-top: 6px;
+        }
+
+        /* Page Footer */
+        .page-footer {
+            border-top: 1px solid var(--border-light);
+            padding-top: 6px;
+            margin-top: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 0.67rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .footer-left {
+            flex: 1;
+            padding-right: 15px;
+        }
+
+        .footer-left strong {
+            color: var(--navy-primary);
+        }
+
+        .footer-links {
+            font-size: 0.63rem;
+            color: var(--text-muted);
+            margin-top: 1px;
+        }
+
+        .footer-links a {
+            color: inherit;
+            text-decoration: underline;
+        }
+
+        .footer-right {
+            text-align: right;
+            font-weight: 500;
+            white-space: nowrap;
+            flex-shrink: 0;
+            font-size: 0.67rem;
+            color: var(--text-muted);
+        }
+
+        /* Bottom Floating Bar on Screen */
+        .bottom-action-card {
+            max-width: 210mm;
+            margin: 10px auto 50px;
+            background: white;
+            border-radius: 12px;
+            padding: 20px 24px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-light);
+            border-top: 4px solid var(--navy-primary);
+            text-align: center;
+        }
+
+        .btn-print-main {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--navy-dark);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            box-shadow: 0 3px 8px rgba(212, 175, 55, 0.35);
+            transition: all 0.2s ease;
+        }
+
+        .btn-print-main:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.55);
+        }
+
+        /* Print Settings */
+        @page {
+            size: A4 portrait;
+            margin: 0mm;
+        }
+
+        @media print {
+            body {
+                background: white;
+                margin: 0;
+                padding: 0 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .bottom-action-card {
+                display: none !important;
+            }
+
+            .page {
+                width: 210mm !important;
+                height: 296mm !important;
+                max-height: 296mm !important;
+                margin: 0 !important;
+                padding: 12mm 16mm 9mm !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
+            }
+
+            .page:last-of-type,
+            .page:last-child {
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .field-input {
+                border: 1px solid #D1D5DB !important;
+                background: white !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================== SEITE 1 ==================== -->
+    <div class="page">
+        <div>
+            <!-- Header -->
+            <header class="page-header">
+                <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Anlageberatung GmbH" class="brand-logo-full">
+                <div class="header-meta">
+                    <strong>Fabian Schulte-Drüggelte</strong><br>
+                    Unabhängiger Honorar-Finanzanlagenberater (§ 34h GewO)<br>
+                    kontakt@rheinfinanz.de &bull; +49 173 267 199 1
+                </div>
+            </header>
+
+            <!-- Document Title -->
+            <div class="doc-title-bar">
+                <h2>Beratungsdokumentation & Geeignetheitserklärung</h2>
+                <span class="doc-subtitle-badge">§§ 16, 18 FinVermV</span>
+            </div>
+
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 9px;">
+                Gesetzliches Beratungsprotokoll und Begründung der Anlageempfehlung gemäß der Finanzanlagenvermittlungsverordnung (FinVermV) für die unabhängige Honorar-Finanzanlagenberatung nach § 34h GewO.
+            </p>
+
+            <!-- Abschnitt 1: Gesprächsrahmen & Stammdaten -->
+            <section class="section-card">
+                <div class="section-header">
+                    <span class="section-num">1</span>
+                    <h3 class="section-title">Gesprächsrahmen & Kundendaten</h3>
+                </div>
+
+                <div class="grid-2" style="margin-bottom: 6px;">
+                    <div class="field-group">
+                        <label class="field-label">Name des Kunden / der Kundin</label>
+                        <input type="text" id="kunde_name" class="field-input" placeholder="Vor- und Nachname">
+                    </div>
+                    <div class="field-group">
+                        <label class="field-label">Geburtsdatum</label>
+                        <input type="text" id="kunde_geburtsdatum" class="field-input" placeholder="TT.MM.JJJJ">
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin-bottom: 6px;">
+                    <div class="field-group">
+                        <label class="field-label">Datum & Uhrzeit des Gesprächs</label>
+                        <input type="text" id="beratung_datum" class="field-input" placeholder="Datum, z. B. 15.10.2026, 10:00 Uhr">
+                    </div>
+                    <div class="field-group">
+                        <label class="field-label">Beratungsart / Ort</label>
+                        <input type="text" id="beratung_ort" class="field-input" placeholder="z. B. Büro Bad Honnef / Online-Videoberatung">
+                    </div>
+                </div>
+
+                <div class="callout-navy" style="margin-top: 4px; padding: 6px 10px;">
+                    <label class="checkbox-label" style="align-items: flex-start;">
+                        <input type="checkbox" class="checkbox-input" checked style="margin-top: 2px;">
+                        <span><strong>Abgleich mit Vorbereitungsbogen:</strong> Die persönlichen Daten, die finanzielle Ausgangslage sowie die Anlageziele aus dem Kunden-Vorbereitungsbogen wurden gemeinsam besprochen, abgeglichen und als aktuell und zutreffend bestätigt.</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Abschnitt 2: Gesetzliche Statusinformation (§ 15 FinVermV) -->
+            <section class="section-card">
+                <div class="section-header">
+                    <span class="section-num">2</span>
+                    <h3 class="section-title">Gesetzliche Statusinformation (§ 15 FinVermV)</h3>
+                </div>
+
+                <div style="font-size: 0.74rem; color: var(--text-dark); line-height: 1.45;">
+                    <p style="margin-bottom: 5px;">
+                        <strong>1. Beraterstatus:</strong> Die Rheinfinanz Anlageberatung GmbH ist als unabhängiger <strong>Honorar-Finanzanlagenberater nach § 34h Abs. 1 GewO</strong> im Vermittlerregister eingetragen (Registernummer: <strong>D-H-110-ZPIU-69</strong>, zuständige Aufsichtsbehörde: IHK Bonn/Rhein-Sieg, Bonner Talweg 17, 53113 Bonn).
+                    </p>
+                    <p style="margin-bottom: 5px;">
+                        <strong>2. Vergütungsstruktur (Echte Honorarberatung):</strong> Die Vergütung erfolgt ausschließlich direkt durch den Kunden auf Basis einer schriftlichen Honorarvereinbarung. Die Annahme von Zuwendungen, Provisionen oder sonstigen Vorteilen von Produktherstellern/Banken ist gesetzlich verboten (§ 34h Abs. 3 GewO). Sollten dennoch Zuwendungen anfallen, werden diese unverzüglich zu 100 % an den Kunden ausgekehrt.
+                    </p>
+                    <p>
+                        <strong>3. Schlichtungsstelle:</strong> Ombudsstelle für Investmentfonds des BVI, Unter den Linden 42, 10117 Berlin (www.ombudsstelle-investmentfonds.de).
+                    </p>
+                </div>
+            </section>
+
+            <!-- Abschnitt 3: Leistungsbereich & Beratungsanlass -->
+            <section class="section-card">
+                <div class="section-header">
+                    <span class="section-num">3</span>
+                    <h3 class="section-title">Leistungsbereich & Anlass des Beratungsgesprächs</h3>
+                </div>
+
+                <div style="font-size: 0.74rem; color: var(--text-dark); margin-bottom: 6px;">
+                    <strong>Beratener Leistungsbereich:</strong> Die Beratung beschränkt sich satzungsgemäß auf <strong>offene Investmentvermögen / OGAW</strong> (insb. kostengünstige, breit gestreute Exchange Traded Funds – ETFs sowie Indexfonds). Geschlossene Fonds oder Vermögensanlagen nach dem VermAnlG werden nicht angeboten.
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" style="margin-bottom: 4px;">Konkreter Anlass / Hauptziel der Beratung:</label>
+                    <div class="options-group">
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input" checked> Strukturierter, langfristiger Vermögensaufbau</label>
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Altersvorsorge / Aufbau eines AV-Depots</label>
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Einmalanlage liquider Mittel (z. B. Erbe, Verkauf)</label>
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Depotanalyse / Neutrale Zweitmeinung</label>
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Optimierung bestehender Sparpläne</label>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer Seite 1 -->
+        <footer class="page-footer">
+            <div class="footer-left">
+                <div><strong>Rheinfinanz Anlageberatung GmbH</strong> &bull; Unabhängige Honorarberatung nach § 34h GewO</div>
+                <div class="footer-links">
+                    <a href="impressum.html" target="_blank">Impressum</a> &bull;
+                    <a href="datenschutz.html" target="_blank">Datenschutz</a> &bull;
+                    <a href="erstinformation.html" target="_blank">Erstinformation</a>
+                </div>
+            </div>
+            <div class="footer-right">
+                Seite 1 von 4
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- ==================== SEITE 2 ==================== -->
+    <div class="page">
+        <div>
+            <!-- Running Header -->
+            <header class="page-header">
+                <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Logo" class="brand-logo-full" style="height: 36px;">
+                <div class="header-meta">
+                    Beratungsdokumentation &bull; <strong>Geeignetheitsprüfung (§ 16 FinVermV)</strong><br>
+                    Kunde: <input type="text" id="kunde_name_header" class="field-input" style="width: 170px; height: 20px; display: inline-block; font-size: 0.72rem;" placeholder="Kundenname">
+                </div>
+            </header>
+
+            <!-- Abschnitt 4: Kenntnisse & Erfahrungen -->
+            <section class="section-card">
+                <div class="section-header">
+                    <span class="section-num">4</span>
+                    <h3 class="section-title">Kenntnisse und Erfahrungen des Kunden (§ 16 Abs. 1 FinVermV)</h3>
+                </div>
+
+                <table class="doc-table">
+                    <thead>
+                        <tr>
+                            <th>Anlageklasse / Instrument</th>
+                            <th style="text-align: center;">Kenntnisse</th>
+                            <th style="text-align: center;">Erfahrung seit</th>
+                            <th style="text-align: center;">Geschäfte p.a.</th>
+                            <th style="text-align: right;">Durchschnittsvolumen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tagesgeld / Festgeld / Geldmarkt</strong></td>
+                            <td style="text-align: center;"><input type="checkbox" class="checkbox-input" checked></td>
+                            <td style="text-align: center;"><input type="text" class="field-input" style="height: 20px; text-align: center;" placeholder="z. B. 5 J."></td>
+                            <td style="text-align: center;"><input type="text" class="field-input" style="height: 20px; text-align: center;" placeholder="laufend"></td>
+                            <td style="text-align: right;"><input type="text" class="field-input" style="height: 20px; text-align: right;" placeholder="ca. €"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anleihen / Rentenfonds (ETFs)</strong></td>
+                            <td style="text-align: center;"><input type="checkbox" class="checkbox-input"></td>
+                            <td style="text-align: center;"><input type="text" class="field-input" style="height: 20px; text-align: center;" placeholder="Jahre"></td>
+                            <td style="text-align: center;"><input type="text" class="field-input" style="height: 20px; text-align: center;" placeholder="Anzahl"></td>
+                            <td style="text-align: right;"><input type="text" class="field-input" style="height: 20px; text-align: right;" placeholder="ca. €"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aktien-ETFs / Indexfonds (OGAW)</strong></td>
+                            <td style="text-align: center;"><input type="checkbox" class="checkbox-input" checked></td>
+                            <td style="text-align: center;"><input type="text" class="field-input" style="height: 20px; text-align: center;" placeholder="z. B. 2 J."></td>
+                            <td style="text-align: center;"><input type="text" class="field-input" style="height: 20px; text-align: center;" placeholder="12x Sparplan"></td>
+                            <td style="text-align: right;"><input type="text" class="field-input" style="height: 20px; text-align: right;" placeholder="ca. €"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aktiv gemanagte Aktien-/Mischfonds</strong></td>
+                            <td style="text-align: center;"><input type="checkbox" class="checkbox-input"></td>
+                            <td style="text-align: center;"><input type="text" class="field-input" style="height: 20px; text-align: center;" placeholder="Jahre"></td>
+                            <td style="text-align: center;"><input type="text" class="field-input" style="height: 20px; text-align: center;" placeholder="Anzahl"></td>
+                            <td style="text-align: right;"><input type="text" class="field-input" style="height: 20px; text-align: right;" placeholder="ca. €"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="field-group" style="margin-top: 6px;">
+                    <label class="field-label">Wie wurden die Kenntnisse überwiegend erworben?</label>
+                    <div class="options-group">
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input" checked> Eigenständiges Handeln (Neobroker/Onlinebanking)</label>
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Beratung durch Banken / Finanzdienstleister</label>
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Aufklärung & Wissensvermittlung im heutigen Gespräch</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Abschnitt 5: Verlusttragfähigkeit -->
+            <section class="section-card">
+                <div class="section-header">
+                    <span class="section-num">5</span>
+                    <h3 class="section-title">Finanzielle Verhältnisse & Verlusttragfähigkeit (§ 16 Abs. 2 FinVermV)</h3>
+                </div>
+
+                <div class="grid-3" style="margin-bottom: 6px;">
+                    <div class="field-group">
+                        <label class="field-label">Freie Sparrate (mtl.)</label>
+                        <input type="text" id="sparrate_ist" class="field-input" placeholder="z. B. 500 €">
+                    </div>
+                    <div class="field-group">
+                        <label class="field-label">Notgroschen (Tagesgeld)</label>
+                        <input type="text" id="notgroschen" class="field-input" placeholder="z. B. 15.000 € (3x Netto)">
+                    </div>
+                    <div class="field-group">
+                        <label class="field-label">Nettovermögen gesamt</label>
+                        <input type="text" id="nettovermoegen" class="field-input" placeholder="ca. €">
+                    </div>
+                </div>
+
+                <div class="callout-gold" style="padding: 6px 10px; font-size: 0.74rem;">
+                    <strong>Feststellung der Verlusttragfähigkeit:</strong><br>
+                    <label class="checkbox-label" style="align-items: flex-start; margin-top: 3px;">
+                        <input type="checkbox" class="checkbox-input" checked style="margin-top: 2px;">
+                        <span>Aufgrund der bestehenden Liquiditätsreserve und des gesicherten monatlichen Überschusses ist der Kunde finanziell in der Lage, die mit der empfohlenen Anlagestrategie einhergehenden zwischenzeitlichen Kursschwankungen und Buchverluste <strong>in vollem Umfang</strong> zu tragen, ohne in Liquiditätsengpässe zu geraten.</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Abschnitt 6: Risikobereitschaft & ESG -->
+            <section class="section-card">
+                <div class="section-header">
+                    <span class="section-num">6</span>
+                    <h3 class="section-title">Risikotoleranz, Anlagehorizont & Nachhaltigkeitspräferenzen</h3>
+                </div>
+
+                <div class="field-group" style="margin-bottom: 6px;">
+                    <label class="field-label">Einstufung der Risikobereitschaft (Risikoklasse RKL):</label>
+                    <div class="options-group">
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input" data-rkl="1"> <strong>RKL 1:</strong> Sicherheitsorientiert</label>
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input" data-rkl="2"> <strong>RKL 2:</strong> Konservativ</label>
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input" data-rkl="3"> <strong>RKL 3:</strong> Ausgewogen</label>
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input" data-rkl="4" checked> <strong>RKL 4:</strong> Wachstumsorientiert</label>
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input" data-rkl="5"> <strong>RKL 5:</strong> Chancenorientiert</label>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="field-group">
+                        <label class="field-label">Geplanter Anlagehorizont</label>
+                        <input type="text" id="anlagehorizont" class="field-input" placeholder="z. B. mind. 10 Jahre / bis Renteneintritt">
+                    </div>
+                    <div class="field-group">
+                        <label class="field-label">Nachhaltigkeitspräferenzen (ESG)</label>
+                        <div class="options-group" style="padding-top: 3px;">
+                            <label class="checkbox-label"><input type="checkbox" class="checkbox-input" checked> Neutral / Breite Streuung</label>
+                            <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> ESG-Kriterien erwünscht</label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer Seite 2 -->
+        <footer class="page-footer">
+            <div class="footer-left">
+                <div><strong>Rheinfinanz Anlageberatung GmbH</strong> &bull; Unabhängige Honorarberatung nach § 34h GewO</div>
+                <div class="footer-links">
+                    <a href="impressum.html" target="_blank">Impressum</a> &bull;
+                    <a href="datenschutz.html" target="_blank">Datenschutz</a> &bull;
+                    <a href="erstinformation.html" target="_blank">Erstinformation</a>
+                </div>
+            </div>
+            <div class="footer-right">
+                Seite 2 von 4
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- ==================== SEITE 3 ==================== -->
+    <div class="page">
+        <div>
+            <!-- Running Header -->
+            <header class="page-header">
+                <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Logo" class="brand-logo-full" style="height: 36px;">
+                <div class="header-meta">
+                    Beratungsdokumentation &bull; <strong>Empfohlene Anlagelösung</strong><br>
+                    Wissenschaftliches ETF-Portfolio &bull; Unabhängige Honorarberatung
+                </div>
+            </header>
+
+            <!-- Abschnitt 7: Empfohlene Anlagestrategie -->
+            <section class="section-card">
+                <div class="section-header">
+                    <span class="section-num">7</span>
+                    <h3 class="section-title">Empfohlene Anlagestrategie & Asset Allocation</h3>
+                </div>
+
+                <div class="callout-gold" style="margin-bottom: 8px;">
+                    <strong style="color: var(--navy-dark); font-size: 0.85rem;">Struktur des empfohlenen wissenschaftlichen Portfolios:</strong>
+                    <div class="grid-2" style="margin-top: 6px;">
+                        <div style="background: white; padding: 7px 10px; border-radius: 4px; border: 1px solid var(--border-light);">
+                            <span style="font-size: 0.72rem; color: var(--gold-dark); font-weight: 700; text-transform: uppercase;">Wachstumsbaustein (Aktien-ETFs)</span>
+                            <div style="display: flex; align-items: baseline; gap: 6px; margin-top: 2px;">
+                                <input type="text" class="field-input" style="width: 60px; font-weight: 700; text-align: center;" value="80 %">
+                                <span style="font-size: 0.75rem; color: var(--text-dark);">Globale Diversifikation (Welt-Aktien / All-World)</span>
+                            </div>
+                        </div>
+                        <div style="background: white; padding: 7px 10px; border-radius: 4px; border: 1px solid var(--border-light);">
+                            <span style="font-size: 0.72rem; color: var(--navy-primary); font-weight: 700; text-transform: uppercase;">Stabilitätsbaustein (Zins / Liquidität)</span>
+                            <div style="display: flex; align-items: baseline; gap: 6px; margin-top: 2px;">
+                                <input type="text" class="field-input" style="width: 60px; font-weight: 700; text-align: center;" value="20 %">
+                                <span style="font-size: 0.75rem; color: var(--text-dark);">Euro-Staatsanleihen / Zins-Tagesgeld</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin-bottom: 6px;">
+                    <div class="field-group">
+                        <label class="field-label">Empfohlenes Einmal-Investitionsvolumen</label>
+                        <input type="text" id="einmalanlage" class="field-input" placeholder="z. B. 30.000 €">
+                    </div>
+                    <div class="field-group">
+                        <label class="field-label">Empfohlene monatliche Sparrate</label>
+                        <input type="text" id="sparrate_soll" class="field-input" placeholder="z. B. 500 € / Monat">
+                    </div>
+                </div>
+
+                <div class="field-group" style="margin-bottom: 6px;">
+                    <label class="field-label">Konkret empfohlene Zielfonds / ISINs (OGAW / ETFs)</label>
+                    <input type="text" id="zielfonds" class="field-input" placeholder="z. B. Vanguard FTSE All-World UCITS ETF (IE00BK5BQT80)">
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">Investitionszeitpunkt / Tranchenregelung:</label>
+                    <div class="options-group">
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input" checked> Sofortige Einmalanlage (rationale Partizipation an langfristigen Kapitalmarktrenditen)</label>
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Aufteilung in Tranchen über einen Zeitraum von ca. Monaten</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Abschnitt 8: Begründung der Fondsauswahl -->
+            <section class="section-card">
+                <div class="section-header">
+                    <span class="section-num">8</span>
+                    <h3 class="section-title">Begründung der Produktauswahl (Wissenschaftlicher Ansatz)</h3>
+                </div>
+
+                <div style="font-size: 0.74rem; color: var(--text-dark); line-height: 1.45;">
+                    <ul style="padding-left: 16px; margin-bottom: 6px;">
+                        <li style="margin-bottom: 3px;"><strong>Maximale Risikostreuung:</strong> Investition über tausende globale Einzeltitel (Industrie- und Schwellenländer) zur vollständigen Eliminierung unsystematischer Unternehmensrisiken.</li>
+                        <li style="margin-bottom: 3px;"><strong>Kosteneffizienz:</strong> Verzicht auf teure, aktiv gemanagte Fonds. Einsatz physisch replizierender, extrem günstiger ETFs mit minimalem Tracking Error.</li>
+                        <li style="margin-bottom: 3px;"><strong>Transparenz & Sondervermögen:</strong> Das Fondsvermögen ist gesetzlich geschütztes Sondervermögen und unabhängig von Bank- und Beraterinsolvenzen abgesichert.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Abschnitt 9: Vollständige Kostenaufstellung (§ 13 FinVermV) -->
+            <section class="section-card">
+                <div class="section-header">
+                    <span class="section-num">9</span>
+                    <h3 class="section-title">Vollständige Kosten- & Gebührentransparenz (§ 13 FinVermV)</h3>
+                </div>
+
+                <table class="doc-table">
+                    <thead>
+                        <tr>
+                            <th>Kostenkomponente</th>
+                            <th>Art der Vergütung</th>
+                            <th style="text-align: right;">Höhe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Unabhängiges Beratungshonorar</strong></td>
+                            <td>Direktvergütung durch den Kunden (Honorarvereinbarung)</td>
+                            <td style="text-align: right;"><input type="text" class="field-input" style="height: 20px; width: 110px; text-align: right; display: inline-block;" placeholder="gemäß Vereinbarung"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Laufende Produktkosten (TER)</strong></td>
+                            <td>Im Fonds eingepreist (an ETF-Anbieter)</td>
+                            <td style="text-align: right;"><strong>ca. 0,15 % – 0,22 % p.a.</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Depotführung & Transaktionskosten</strong></td>
+                            <td>Direkt über abwickelnde Partnerbank</td>
+                            <td style="text-align: right;">ca. 0 € – 1,50 € / Sparplan</td>
+                        </tr>
+                        <tr style="background: rgba(212, 175, 55, 0.08);">
+                            <td><strong style="color: var(--navy-dark);">Vertriebsprovisionen / Zuwendungen</strong></td>
+                            <td><strong style="color: var(--gold-dark);">Honorarberater-Garantie (§ 34h GewO)</strong></td>
+                            <td style="text-align: right;"><strong style="color: var(--navy-dark);">0,00 € (0 %)</strong></td>
+                        </tr>
+                        <tr style="background: rgba(212, 175, 55, 0.08);">
+                            <td><strong style="color: var(--navy-dark);">Ausgabeaufschläge (Agio)</strong></td>
+                            <td><strong style="color: var(--gold-dark);">100 % Provisionsfrei</strong></td>
+                            <td style="text-align: right;"><strong style="color: var(--navy-dark);">0,00 € (0 %)</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <!-- Footer Seite 3 -->
+        <footer class="page-footer">
+            <div class="footer-left">
+                <div><strong>Rheinfinanz Anlageberatung GmbH</strong> &bull; Unabhängige Honorarberatung nach § 34h GewO</div>
+                <div class="footer-links">
+                    <a href="impressum.html" target="_blank">Impressum</a> &bull;
+                    <a href="datenschutz.html" target="_blank">Datenschutz</a> &bull;
+                    <a href="erstinformation.html" target="_blank">Erstinformation</a>
+                </div>
+            </div>
+            <div class="footer-right">
+                Seite 3 von 4
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- ==================== SEITE 4 ==================== -->
+    <div class="page">
+        <div>
+            <!-- Running Header -->
+            <header class="page-header">
+                <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Logo" class="brand-logo-full" style="height: 36px;">
+                <div class="header-meta">
+                    Beratungsdokumentation &bull; <strong>Geeignetheitserklärung & Abschluss</strong><br>
+                    Rechtsverbindliche Dokumentation (§ 18 FinVermV)
+                </div>
+            </header>
+
+            <!-- Abschnitt 10: Geeignetheitserklärung -->
+            <section class="section-card">
+                <div class="section-header">
+                    <span class="section-num">10</span>
+                    <h3 class="section-title">Gesetzliche Geeignetheitserklärung (§ 18 FinVermV)</h3>
+                </div>
+
+                <div class="callout-navy" style="padding: 9px 12px; font-size: 0.75rem; line-height: 1.5; color: var(--navy-dark);">
+                    <p style="margin-bottom: 6px;">
+                        <strong>Feststellung der Eignung durch den Berater:</strong><br>
+                        Unter Berücksichtigung der persönlichen und finanziellen Verhältnisse, der Anlageziele, des Zeithorizonts, der vorhandenen Kenntnisse und Erfahrungen sowie der finanziellen Verlusttragfähigkeit wird hiermit erklärt, dass die in Abschnitt 7 empfohlene Anlagestrategie für den Kunden <strong>im Sinne von § 16 FinVermV GEEIGNET</strong> ist.
+                    </p>
+                    <p>
+                        <strong>Begründung der Eignung:</strong><br>
+                        1. <strong>Anlageziele & Zeithorizont:</strong> Die Struktur deckt sich mit dem langfristigen Anlagehorizont des Kunden zur nachhaltigen Vermögensbildung.<br>
+                        2. <strong>Risikotoleranz:</strong> Die Gewichtung aus globalen Aktien-ETFs und risikoarmem Stabilitätsbaustein entspricht exakt der ermittelten Risikoklasse des Kunden.<br>
+                        3. <strong>Finanzielle Verlusttragfähigkeit:</strong> Da Liquiditätsreserven separat vorgehalten werden, gefährden mögliche Marktschwankungen die Zahlungsfähigkeit zu keinem Zeitpunkt.<br>
+                        4. <strong>Kenntnisse & Erfahrungen:</strong> Die Funktionsweise, Risiken und Chancen von Indexfonds/ETFs wurden eingehend besprochen und vom Kunden verstanden.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Abschnitt 11: Ausgehändigte Pflichtunterlagen -->
+            <section class="section-card">
+                <div class="section-header">
+                    <span class="section-num">11</span>
+                    <h3 class="section-title">Dokumentation der ausgehändigten Unterlagen</h3>
+                </div>
+
+                <div style="font-size: 0.74rem; color: var(--text-dark); margin-bottom: 4px;">
+                    Dem Kunden wurden vor Abschluss der Beratung folgende Unterlagen in Textform bzw. elektronisch zur Verfügung gestellt:
+                </div>
+                <div class="options-group" style="padding-left: 4px;">
+                    <label class="checkbox-label"><input type="checkbox" class="checkbox-input" checked> Erstinformation nach § 15 FinVermV</label>
+                    <label class="checkbox-label"><input type="checkbox" class="checkbox-input" checked> Basisinformationsblätter (PRIIPs-KIDs) der empfohlenen ETFs</label>
+                    <label class="checkbox-label"><input type="checkbox" class="checkbox-input" checked> Kostenaufstellung nach § 13 FinVermV</label>
+                    <label class="checkbox-label"><input type="checkbox" class="checkbox-input" checked> Diese Beratungsdokumentation samt Geeignetheitserklärung</label>
+                </div>
+            </section>
+
+            <!-- Abschnitt 12: Bestätigung & Unterschriften -->
+            <section class="section-card" style="margin-bottom: 0;">
+                <div class="section-header">
+                    <span class="section-num">12</span>
+                    <h3 class="section-title">Bestätigung & Rechtsverbindliche Unterschriften</h3>
+                </div>
+
+                <p style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 12px;">
+                    Der Kunde bestätigt hiermit, dass die Angaben in dieser Beratungsdokumentation vollständig und zutreffend sind, die Beratung auf dieser Grundlage stattgefunden hat und die Geeignetheitserklärung <strong>vor dem Abschluss der Anlageentscheidung</strong> ausgehändigt wurde.
+                </p>
+
+                <!-- Unterschriftenfelder -->
+                <div class="grid-2" style="gap: 25px; margin-top: 10px;">
+                    <!-- Berater -->
+                    <div>
+                        <div style="border-bottom: 1.5px solid var(--navy-primary); height: 35px; margin-bottom: 4px;"></div>
+                        <div style="font-size: 0.7rem; font-weight: 600; color: var(--navy-dark);">Fabian Schulte-Drüggelte</div>
+                        <div style="font-size: 0.65rem; color: var(--text-light); text-transform: uppercase;">Ort, Datum & Unterschrift Berater</div>
+                    </div>
+
+                    <!-- Kunde -->
+                    <div>
+                        <div style="border-bottom: 1.5px solid var(--navy-primary); height: 35px; margin-bottom: 4px;"></div>
+                        <div style="font-size: 0.7rem; font-weight: 600; color: var(--navy-dark);" id="kunde_sig_name">Kunde / Anleger</div>
+                        <div style="font-size: 0.65rem; color: var(--text-light); text-transform: uppercase;">Ort, Datum & Unterschrift Kunde</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer Seite 4 -->
+        <footer class="page-footer">
+            <div class="footer-left">
+                <div><strong>Rheinfinanz Anlageberatung GmbH</strong> &bull; Rhöndorfer Str. 68, Gebäudeteil B, 53604 Bad Honnef</div>
+                <div class="footer-links">
+                    <a href="impressum.html" target="_blank">Impressum</a> &bull;
+                    <a href="datenschutz.html" target="_blank">Datenschutz</a> &bull;
+                    <a href="erstinformation.html" target="_blank">Erstinformation</a>
+                </div>
+            </div>
+            <div class="footer-right">
+                Seite 4 von 4
+            </div>
+        </footer>
+    </div>
+
+    <!-- Screen Action Bar (Printing / Saving as PDF) -->
+    <div class="bottom-action-card">
+        <h4 style="font-family: var(--font-heading); font-size: 1.15rem; color: var(--navy-dark); margin-bottom: 6px;">
+            Beratungsdokumentation abschließen & sichern
+        </h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
+            Klicken Sie auf den Button, um das 4-seitige Beratungsprotokoll als PDF zu speichern oder direkt für den Kunden auszudrucken.
+        </p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <button type="button" class="btn-print-main" onclick="window.print()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                Als 4-seitige PDF drucken / speichern
+            </button>
+            <button type="button" onclick="resetForm()" style="background: white; color: var(--text-muted); font-family: var(--font-heading); font-weight: 600; font-size: 0.88rem; padding: 12px 18px; border: 1.5px solid var(--border-light); border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+                Eingaben leeren
+            </button>
+        </div>
+    </div>
+
+    <!-- Client Name Sync & Query Param Auto-Populate -->
+    <script>
+        const kundeNameInput = document.getElementById('kunde_name');
+        const kundeHeaderInput = document.getElementById('kunde_name_header');
+        const kundeSigName = document.getElementById('kunde_sig_name');
+        const datumInput = document.getElementById('beratung_datum');
+
+        function updateClientName(val) {
+            if (kundeNameInput && kundeNameInput.value !== val) kundeNameInput.value = val;
+            if (kundeHeaderInput && kundeHeaderInput.value !== val) kundeHeaderInput.value = val;
+            if (kundeSigName) {
+                kundeSigName.textContent = val && val.trim() ? 'Kunde / Anleger: ' + val.trim() : 'Kunde / Anleger';
+            }
+        }
+
+        if (kundeNameInput) {
+            kundeNameInput.addEventListener('input', (e) => updateClientName(e.target.value));
+        }
+        if (kundeHeaderInput) {
+            kundeHeaderInput.addEventListener('input', (e) => updateClientName(e.target.value));
+        }
+
+        // Auto-fill today's date if empty
+        if (datumInput && !datumInput.value) {
+            const today = new Date();
+            const day = String(today.getDate()).padStart(2, '0');
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const year = today.getFullYear();
+            datumInput.value = `${day}.${month}.${year}`;
+        }
+
+        // URL Query Parameters Pre-population
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            
+            // Name
+            const nameParam = params.get('kunde') || params.get('name');
+            if (nameParam) updateClientName(nameParam);
+            
+            // Geburtsdatum
+            const gebParam = params.get('geburtstag') || params.get('geburtsdatum') || params.get('geb');
+            if (gebParam && document.getElementById('kunde_geburtsdatum')) {
+                document.getElementById('kunde_geburtsdatum').value = gebParam;
+            }
+            
+            // Datum
+            const dateParam = params.get('datum');
+            if (dateParam && datumInput) datumInput.value = dateParam;
+            
+            // Ort
+            const ortParam = params.get('ort');
+            if (ortParam && document.getElementById('beratung_ort')) {
+                document.getElementById('beratung_ort').value = ortParam;
+            }
+            
+            // Sparrate Ist
+            const sparrateParam = params.get('sparrate') || params.get('sparrate_ist');
+            if (sparrateParam && document.getElementById('sparrate_ist')) {
+                document.getElementById('sparrate_ist').value = sparrateParam;
+            }
+            
+            // Notgroschen
+            const notgroschenParam = params.get('notgroschen');
+            if (notgroschenParam && document.getElementById('notgroschen')) {
+                document.getElementById('notgroschen').value = notgroschenParam;
+            }
+            
+            // Nettovermögen
+            const nettoParam = params.get('nettovermoegen') || params.get('netto');
+            if (nettoParam && document.getElementById('nettovermoegen')) {
+                document.getElementById('nettovermoegen').value = nettoParam;
+            }
+            
+            // Anlagehorizont
+            const horizontParam = params.get('horizont') || params.get('anlagehorizont');
+            if (horizontParam && document.getElementById('anlagehorizont')) {
+                document.getElementById('anlagehorizont').value = horizontParam;
+            }
+            
+            // Einmalanlage
+            const einmalParam = params.get('einmalanlage') || params.get('anlagebetrag') || params.get('betrag');
+            if (einmalParam && document.getElementById('einmalanlage')) {
+                document.getElementById('einmalanlage').value = einmalParam;
+            }
+            
+            // Sparrate Soll
+            const sparrateSollParam = params.get('sparrate_soll') || (params.get('sparrate') && !document.getElementById('sparrate_ist').value);
+            if (sparrateSollParam && document.getElementById('sparrate_soll')) {
+                document.getElementById('sparrate_soll').value = sparrateSollParam;
+            }
+
+            // Zielfonds
+            const fondsParam = params.get('fonds') || params.get('zielfonds');
+            if (fondsParam && document.getElementById('zielfonds')) {
+                document.getElementById('zielfonds').value = fondsParam;
+            }
+
+            // Risikoklasse (1-5)
+            const rklParam = params.get('rkl');
+            if (rklParam) {
+                document.querySelectorAll('[data-rkl]').forEach(cb => {
+                    cb.checked = (cb.getAttribute('data-rkl') === rklParam);
+                });
+            }
+        });
+
+        function resetForm() {
+            if (confirm('Möchten Sie alle Eingabefelder dieser Dokumentation leeren?')) {
+                window.location.href = window.location.pathname;
+            }
+        }
+    </script>
+</body>
+
+</html>
