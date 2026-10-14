@@ -215,6 +215,17 @@
             box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
         }
 
+        .header-kunde-sync {
+            width: 175px;
+            min-width: 175px;
+            max-width: 350px;
+            height: 20px;
+            display: inline-block;
+            font-size: 0.72rem;
+            vertical-align: middle;
+            transition: width 0.15s ease, font-size 0.15s ease;
+        }
+
         /* Checkbox & Options */
         .options-group {
             display: flex;
@@ -454,7 +465,7 @@
                 <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Anlageberatung GmbH" class="brand-logo-full">
                 <div class="header-meta">
                     Beratungsdokumentation &bull; <strong>Gesprächsrahmen & Status (§ 15 FinVermV)</strong><br>
-                    Kunde: <input type="text" class="field-input header-kunde-sync" style="width: 175px; height: 20px; display: inline-block; font-size: 0.72rem;" placeholder="Kundenname">
+                    Kunde: <input type="text" class="field-input header-kunde-sync" placeholder="Kundenname">
                 </div>
             </header>
 
@@ -574,7 +585,7 @@
                 <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Logo" class="brand-logo-full">
                 <div class="header-meta">
                     Beratungsdokumentation &bull; <strong>Geeignetheitsprüfung (§ 16 FinVermV)</strong><br>
-                    Kunde: <input type="text" class="field-input header-kunde-sync" style="width: 175px; height: 20px; display: inline-block; font-size: 0.72rem;" placeholder="Kundenname">
+                    Kunde: <input type="text" class="field-input header-kunde-sync" placeholder="Kundenname">
                 </div>
             </header>
 
@@ -727,7 +738,7 @@
                 <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Logo" class="brand-logo-full">
                 <div class="header-meta">
                     Beratungsdokumentation &bull; <strong>Anlagestrategie & Kostentransparenz (§ 13 FinVermV)</strong><br>
-                    Kunde: <input type="text" class="field-input header-kunde-sync" style="width: 175px; height: 20px; display: inline-block; font-size: 0.72rem;" placeholder="Kundenname">
+                    Kunde: <input type="text" class="field-input header-kunde-sync" placeholder="Kundenname">
                 </div>
             </header>
 
@@ -875,7 +886,7 @@
                 <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Logo" class="brand-logo-full">
                 <div class="header-meta">
                     Beratungsdokumentation &bull; <strong>Geeignetheitserklärung & Abschluss (§ 18 FinVermV)</strong><br>
-                    Kunde: <input type="text" class="field-input header-kunde-sync" style="width: 175px; height: 20px; display: inline-block; font-size: 0.72rem;" placeholder="Kundenname">
+                    Kunde: <input type="text" class="field-input header-kunde-sync" placeholder="Kundenname">
                 </div>
             </header>
 
@@ -999,11 +1010,30 @@
             if (kundeMainInput && kundeMainInput.value !== val) {
                 kundeMainInput.value = val;
             }
+            const cleanVal = val || '';
+            const len = cleanVal.length;
+
+            // Dynamische Skalierung für lange Namen (z. B. Mehrfachvornamen, Doppelnamen, Adelstitel)
+            let targetWidth = 175;
+            let targetFontSize = '0.72rem';
+
+            if (len > 20) {
+                targetWidth = Math.min(350, 175 + (len - 20) * 6.5);
+                if (len > 40) {
+                    targetFontSize = '0.63rem';
+                } else if (len > 28) {
+                    targetFontSize = '0.67rem';
+                }
+            }
+
             headerKundeInputs.forEach(input => {
                 if (input.value !== val) input.value = val;
+                input.style.width = targetWidth + 'px';
+                input.style.fontSize = targetFontSize;
+                input.title = cleanVal;
             });
             if (kundeSigName) {
-                kundeSigName.textContent = val && val.trim() ? 'Kunde / Anleger: ' + val.trim() : 'Kunde / Anleger';
+                kundeSigName.textContent = cleanVal.trim() ? 'Kunde / Anleger: ' + cleanVal.trim() : 'Kunde / Anleger';
             }
         }
 
