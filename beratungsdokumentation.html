@@ -216,16 +216,18 @@
         }
 
         .header-kunde-sync {
-            width: 105px;
-            min-width: 105px;
+            width: 92px;
+            min-width: 92px;
             max-width: 360px;
             height: 21px;
+            padding: 1px 7px;
+            box-sizing: border-box;
             display: inline-block;
             font-size: 0.72rem;
             vertical-align: middle;
             font-weight: 500;
             color: var(--navy-dark);
-            transition: width 0.18s ease, font-size 0.18s ease;
+            transition: width 0.08s ease-out, font-size 0.08s ease-out;
         }
 
         /* Checkbox & Options */
@@ -1015,6 +1017,51 @@
         const kundeSigName = document.getElementById('kunde_sig_name');
         const datumInput = document.getElementById('beratung_datum');
 
+        // Dynamische, pixelgenaue Textbreitenmessung
+        let measureSpan = null;
+        let measureCanvas = null;
+        let measureCtx = null;
+
+        function getTextWidth(text, fontSize) {
+            const fontStr = "500 " + fontSize + " 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+            
+            // 1. Primär: Echtes DOM-Span für 100% exakte Schriftdarstellung des Browsers
+            try {
+                if (!measureSpan && document.body) {
+                    measureSpan = document.createElement('span');
+                    measureSpan.style.position = 'absolute';
+                    measureSpan.style.top = '-9999px';
+                    measureSpan.style.left = '-9999px';
+                    measureSpan.style.visibility = 'hidden';
+                    measureSpan.style.whiteSpace = 'pre';
+                    measureSpan.style.fontFamily = "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+                    measureSpan.style.fontWeight = '500';
+                    measureSpan.style.letterSpacing = 'normal';
+                    document.body.appendChild(measureSpan);
+                }
+                if (measureSpan) {
+                    measureSpan.style.fontSize = fontSize;
+                    measureSpan.textContent = text;
+                    const w = measureSpan.getBoundingClientRect().width;
+                    if (w > 0) return w;
+                }
+            } catch (e) {}
+
+            // 2. Sekundär: HTML5 Canvas Context
+            try {
+                if (!measureCanvas) {
+                    measureCanvas = document.createElement('canvas');
+                    measureCtx = measureCanvas.getContext('2d');
+                }
+                measureCtx.font = fontStr;
+                const w = measureCtx.measureText(text).width;
+                if (w > 0) return w;
+            } catch (e) {}
+
+            // 3. Fallback
+            return text.length * 6.2;
+        }
+
         function updateClientName(val) {
             if (kundeMainInput && kundeMainInput.value !== val) {
                 kundeMainInput.value = val;
@@ -1022,21 +1069,23 @@
             const cleanVal = val || '';
             const len = cleanVal.length;
 
-            // Sehr kompakte Basisbreite zu Beginn: 105px (umschließt exakt den Platzhalter "Kundenname")
-            let targetWidth = 105;
+            // Schriftgröße dezent anpassen bei langen Namen
             let targetFontSize = '0.72rem';
-
-            if (len > 12) {
-                if (len > 40) {
-                    targetFontSize = '0.64rem';
-                    targetWidth = Math.min(350, Math.round(len * 5.8 + 20));
-                } else if (len > 28) {
-                    targetFontSize = '0.68rem';
-                    targetWidth = Math.min(350, Math.round(len * 6.4 + 20));
-                } else {
-                    targetWidth = Math.min(350, Math.round(len * 6.8 + 20));
-                }
+            if (len > 48) {
+                targetFontSize = '0.60rem';
+            } else if (len > 36) {
+                targetFontSize = '0.64rem';
+            } else if (len > 24) {
+                targetFontSize = '0.68rem';
             }
+
+            // Exakte Messung des eingegebenen Textes (oder des Platzhalters bei leerem Feld)
+            const textToMeasure = cleanVal.trim().length > 0 ? cleanVal : 'Kundenname';
+            const textWidth = getTextWidth(textToMeasure, targetFontSize);
+
+            // Exakte Boxbreite: Gemessene Textbreite + 18px (7px Innenabstand links + 7px rechts + 2px Rahmen + 2px Puffer)
+            // Schmiegt sich haargenau an den Text an, ohne toten Weißraum rechts
+            const targetWidth = Math.min(360, Math.max(92, Math.ceil(textWidth + 18)));
 
             headerKundeInputs.forEach(input => {
                 if (input.value !== val) input.value = val;
@@ -1060,10 +1109,12 @@
             });
         });
 
-        // Prüfen, ob Browser Autofill beim Laden aktiv war
+        // Prüfen, ob Browser Autofill beim Laden aktiv war, sonst initiale Breite kalibrieren
         window.addEventListener('load', () => {
             if (kundeMainInput && kundeMainInput.value) {
                 updateClientName(kundeMainInput.value);
+            } else {
+                updateClientName('');
             }
         });
 
