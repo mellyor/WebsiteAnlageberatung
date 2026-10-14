@@ -74,7 +74,7 @@
         }
 
         .brand-logo-full {
-            height: 44px;
+            height: 36px;
             width: auto;
             object-fit: contain;
             display: block;
@@ -454,16 +454,15 @@
             <header class="page-header">
                 <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Anlageberatung GmbH" class="brand-logo-full">
                 <div class="header-meta">
-                    <strong>Fabian Schulte-Drüggelte</strong><br>
-                    Unabhängiger Honorar-Finanzanlagenberater (§ 34h GewO)<br>
-                    kontakt@rheinfinanz.de &bull; +49 173 267 199 1
+                    Beratungsdokumentation &bull; <strong>Gesprächsrahmen & Status (§ 15 FinVermV)</strong><br>
+                    Kunde: <input type="text" class="field-input header-kunde-sync" style="width: 175px; height: 20px; display: inline-block; font-size: 0.72rem;" placeholder="Kundenname">
                 </div>
             </header>
 
             <!-- Document Title -->
             <div class="doc-title-bar">
                 <h2>Beratungsdokumentation & Geeignetheitserklärung</h2>
-                <span class="doc-subtitle-badge">§§ 16, 18 FinVermV</span>
+                <span class="doc-subtitle-badge">§§ 13, 15, 16, 18 FinVermV</span>
             </div>
 
             <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 9px;">
@@ -573,10 +572,10 @@
         <div>
             <!-- Running Header -->
             <header class="page-header">
-                <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Logo" class="brand-logo-full" style="height: 36px;">
+                <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Logo" class="brand-logo-full">
                 <div class="header-meta">
                     Beratungsdokumentation &bull; <strong>Geeignetheitsprüfung (§ 16 FinVermV)</strong><br>
-                    Kunde: <input type="text" id="kunde_name_header" class="field-input" style="width: 170px; height: 20px; display: inline-block; font-size: 0.72rem;" placeholder="Kundenname">
+                    Kunde: <input type="text" class="field-input header-kunde-sync" style="width: 175px; height: 20px; display: inline-block; font-size: 0.72rem;" placeholder="Kundenname">
                 </div>
             </header>
 
@@ -726,10 +725,10 @@
         <div>
             <!-- Running Header -->
             <header class="page-header">
-                <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Logo" class="brand-logo-full" style="height: 36px;">
+                <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Logo" class="brand-logo-full">
                 <div class="header-meta">
-                    Beratungsdokumentation &bull; <strong>Empfohlene Anlagelösung</strong><br>
-                    Wissenschaftliches ETF-Portfolio &bull; Unabhängige Honorarberatung
+                    Beratungsdokumentation &bull; <strong>Anlagestrategie & Kostentransparenz (§ 13 FinVermV)</strong><br>
+                    Kunde: <input type="text" class="field-input header-kunde-sync" style="width: 175px; height: 20px; display: inline-block; font-size: 0.72rem;" placeholder="Kundenname">
                 </div>
             </header>
 
@@ -874,10 +873,10 @@
         <div>
             <!-- Running Header -->
             <header class="page-header">
-                <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Logo" class="brand-logo-full" style="height: 36px;">
+                <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Logo" class="brand-logo-full">
                 <div class="header-meta">
-                    Beratungsdokumentation &bull; <strong>Geeignetheitserklärung & Abschluss</strong><br>
-                    Rechtsverbindliche Dokumentation (§ 18 FinVermV)
+                    Beratungsdokumentation &bull; <strong>Geeignetheitserklärung & Abschluss (§ 18 FinVermV)</strong><br>
+                    Kunde: <input type="text" class="field-input header-kunde-sync" style="width: 175px; height: 20px; display: inline-block; font-size: 0.72rem;" placeholder="Kundenname">
                 </div>
             </header>
 
@@ -992,25 +991,29 @@
 
     <!-- Client Name Sync & Query Param Auto-Populate -->
     <script>
-        const kundeNameInput = document.getElementById('kunde_name');
-        const kundeHeaderInput = document.getElementById('kunde_name_header');
+        const kundeMainInput = document.getElementById('kunde_name');
+        const headerKundeInputs = document.querySelectorAll('.header-kunde-sync');
         const kundeSigName = document.getElementById('kunde_sig_name');
         const datumInput = document.getElementById('beratung_datum');
 
         function updateClientName(val) {
-            if (kundeNameInput && kundeNameInput.value !== val) kundeNameInput.value = val;
-            if (kundeHeaderInput && kundeHeaderInput.value !== val) kundeHeaderInput.value = val;
+            if (kundeMainInput && kundeMainInput.value !== val) {
+                kundeMainInput.value = val;
+            }
+            headerKundeInputs.forEach(input => {
+                if (input.value !== val) input.value = val;
+            });
             if (kundeSigName) {
                 kundeSigName.textContent = val && val.trim() ? 'Kunde / Anleger: ' + val.trim() : 'Kunde / Anleger';
             }
         }
 
-        if (kundeNameInput) {
-            kundeNameInput.addEventListener('input', (e) => updateClientName(e.target.value));
+        if (kundeMainInput) {
+            kundeMainInput.addEventListener('input', (e) => updateClientName(e.target.value));
         }
-        if (kundeHeaderInput) {
-            kundeHeaderInput.addEventListener('input', (e) => updateClientName(e.target.value));
-        }
+        headerKundeInputs.forEach(input => {
+            input.addEventListener('input', (e) => updateClientName(e.target.value));
+        });
 
         // Auto-fill today's date if empty
         if (datumInput && !datumInput.value) {
