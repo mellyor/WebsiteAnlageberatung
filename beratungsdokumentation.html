@@ -216,13 +216,15 @@
         }
 
         .header-kunde-sync {
-            width: 175px;
-            min-width: 175px;
-            max-width: 350px;
-            height: 20px;
+            width: 310px;
+            min-width: 200px;
+            max-width: 420px;
+            height: 22px;
             display: inline-block;
             font-size: 0.72rem;
             vertical-align: middle;
+            font-weight: 500;
+            color: var(--navy-dark);
             transition: width 0.15s ease, font-size 0.15s ease;
         }
 
@@ -446,6 +448,15 @@
             }
 
             .field-input {
+                border: 1px solid #D1D5DB !important;
+                background: white !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .header-kunde-sync {
+                width: 310px !important;
+                max-width: 420px !important;
                 border: 1px solid #D1D5DB !important;
                 background: white !important;
                 -webkit-print-color-adjust: exact !important;
@@ -1013,17 +1024,19 @@
             const cleanVal = val || '';
             const len = cleanVal.length;
 
-            // Dynamische Skalierung für lange Namen (z. B. Mehrfachvornamen, Doppelnamen, Adelstitel)
-            let targetWidth = 175;
+            // Dynamische Skalierung: Basisbreite 310px, wächst bei überlangen Namen bis 420px
+            let targetWidth = 310;
             let targetFontSize = '0.72rem';
 
-            if (len > 20) {
-                targetWidth = Math.min(350, 175 + (len - 20) * 6.5);
-                if (len > 40) {
-                    targetFontSize = '0.63rem';
-                } else if (len > 28) {
-                    targetFontSize = '0.67rem';
+            if (len > 35) {
+                targetWidth = Math.min(420, 310 + (len - 35) * 6.5);
+                if (len > 44) {
+                    targetFontSize = '0.64rem';
+                } else if (len > 38) {
+                    targetFontSize = '0.68rem';
                 }
+            } else if (len <= 15 && len > 0) {
+                targetWidth = 240;
             }
 
             headerKundeInputs.forEach(input => {
@@ -1038,10 +1051,21 @@
         }
 
         if (kundeMainInput) {
-            kundeMainInput.addEventListener('input', (e) => updateClientName(e.target.value));
+            ['input', 'change', 'blur', 'keyup'].forEach(evt => {
+                kundeMainInput.addEventListener(evt, (e) => updateClientName(e.target.value));
+            });
         }
         headerKundeInputs.forEach(input => {
-            input.addEventListener('input', (e) => updateClientName(e.target.value));
+            ['input', 'change', 'blur', 'keyup'].forEach(evt => {
+                input.addEventListener(evt, (e) => updateClientName(e.target.value));
+            });
+        });
+
+        // Prüfen, ob Browser Autofill beim Laden aktiv war
+        window.addEventListener('load', () => {
+            if (kundeMainInput && kundeMainInput.value) {
+                updateClientName(kundeMainInput.value);
+            }
         });
 
         // Auto-fill today's date if empty
