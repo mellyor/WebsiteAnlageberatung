@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vorbereitungsbogen | Rheinfinanz Anlageberatung GmbH</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --navy-dark: #0A192F;
+            --navy-primary: #112D4E;
+            --navy-surface: #1B3B6F;
+            --gold: #D4AF37;
+            --gold-light: #F3E5AB;
+            --gold-dark: #AA8825;
+            --text-dark: #1F2937;
+            --text-muted: #4B5563;
+            --text-light: #6B7280;
+            --bg-page: #FFFFFF;
+            --bg-card: #F9FAFB;
+            --border-light: #E5E7EB;
+            --border-gold: rgba(212, 175, 55, 0.45);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: #E2E8F0;
+            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Screen Action Toolbar (Hidden in Print) */
+        .toolbar {
+            max-width: 210mm;
+            margin: 20px auto 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--navy-dark);
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .toolbar-info {
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toolbar-info span {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .toolbar-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--navy-dark);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.88rem;
+            padding: 9px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(212, 175, 55, 0.35);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.55);
+        }
+
+        .btn-print {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.84rem;
+            padding: 8px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-print:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Success / Modal Banner */
+        .status-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.75);
+            backdrop-filter: blur(4px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .status-modal.active {
+            display: flex;
+        }
+
+        .status-card {
+            background: white;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 100%;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-top: 5px solid var(--gold);
+        }
+
+        .status-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-dark);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .status-card h3 {
+            font-family: var(--font-heading);
+            color: var(--navy-dark);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .status-card p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .status-close-btn {
+            background: var(--navy-primary);
+            color: white;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            padding: 9px 22px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* DIN A4 Container Setup */
+        .page {
+            width: 210mm;
+            height: 296mm;
+            max-height: 296mm;
+            margin: 0 auto 30px;
+            background: var(--bg-page);
+            padding: 13mm 17mm 11mm;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        /* Header Area */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-gold);
+            padding-bottom: 10px;
+            margin-bottom: 11px;
+        }
+
+        .brand-logo-full {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .header-meta {
+            text-align: right;
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        .header-meta strong {
+            color: var(--navy-primary);
+            font-weight: 600;
+        }
+
+        /* Title Area */
+        .doc-title-bar {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-primary) 100%);
+            color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .doc-title-bar h2 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: white;
+        }
+
+        .intro-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 10px;
+            padding: 0 2px;
+        }
+
+        /* Section Styling */
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-left: 3.5px solid var(--navy-primary);
+            border-radius: 6px;
+            padding: 9px 13px;
+            margin-bottom: 10px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 7px;
+        }
+
+        .section-num {
+            background: var(--navy-primary);
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 0.7rem;
+            font-weight: 700;
+            width: 19px;
+            height: 19px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            letter-spacing: -0.01em;
+        }
+
+        /* Form Fields & Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 14px;
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .field-label {
+            font-size: 0.71rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .field-input {
+            border: 1px solid var(--border-light);
+            background: white;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 0.81rem;
+            color: var(--text-dark);
+            height: 26px;
+            width: 100%;
+            outline: none;
+            font-family: var(--font-body);
+            transition: border-color 0.2s;
+        }
+
+        .field-input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Checkbox & Options */
+        .options-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px 14px;
+            margin-top: 2px;
+        }
+
+        .checkbox-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .checkbox-input {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border: 1.5px solid var(--navy-primary);
+            border-radius: 3px;
+            background: white;
+            cursor: pointer;
+            position: relative;
+            flex-shrink: 0;
+            vertical-align: middle;
+            transition: all 0.15s ease;
+        }
+
+        .checkbox-input:checked {
+            background-color: var(--navy-primary);
+            border-color: var(--navy-primary);
+        }
+
+        .checkbox-input:checked::after {
+            content: '';
+            position: absolute;
+            left: 3.5px;
+            top: 0.5px;
+            width: 3.5px;
+            height: 7.5px;
+            border: solid var(--gold);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        /* Highlight Box: Beträge & Horizont */
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 5px;
+            padding: 7px 11px;
+            margin-top: 5px;
+        }
+
+        /* Interactive Textarea */
+        .field-textarea {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-family: var(--font-body);
+            font-size: 0.81rem;
+            color: var(--text-dark);
+            line-height: 1.45;
+            resize: none;
+            outline: none;
+            background: white;
+            transition: border-color 0.2s;
+        }
+
+        .field-textarea:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Return / Instructions Box */
+        .return-box {
+            background: rgba(17, 45, 78, 0.04);
+            border: 1px solid rgba(17, 45, 78, 0.15);
+            border-radius: 6px;
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .return-box-icon {
+            color: var(--gold-dark);
+            flex-shrink: 0;
+        }
+
+        .return-box-text {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .return-box-text strong {
+            color: var(--navy-primary);
+        }
+
+        /* Page Footer */
+        .page-footer {
+            border-top: 1px solid var(--border-light);
+            padding-top: 7px;
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.67rem;
+            color: var(--text-light);
+        }
+
+        .footer-left strong {
+            color: var(--navy-primary);
+        }
+
+        .footer-right {
+            text-align: right;
+            font-weight: 500;
+        }
+
+        /* Bottom Floating Bar on Screen (Convenient for Online Users) */
+        .bottom-action-bar {
+            max-width: 210mm;
+            margin: -10px auto 40px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* Robust Clean Print Rules (Guaranteed 2 Pages, No Blank Pages) */
+        @page {
+            size: A4 portrait;
+            margin: 0mm;
+        }
+
+        @media print {
+            body {
+                background: white;
+                margin: 0;
+                padding: 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .toolbar,
+            .bottom-action-bar,
+            .status-modal {
+                display: none !important;
+            }
+
+            .page {
+                width: 210mm !important;
+                height: 296mm !important;
+                max-height: 296mm !important;
+                margin: 0 !important;
+                padding: 12mm 16mm 10mm !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
+            }
+
+            .page:last-of-type,
+            .page:last-child {
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            /* Fields keep their neat bordered look in PDF printout */
+            .field-input {
+                border: 1px solid #D1D5DB !important;
+                background: white !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .field-textarea {
+                border: 1px solid #D1D5DB !important;
+                background: white !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- On-Screen Action Bar (Hidden when printed or saved as PDF) -->
+    <div class="toolbar">
+        <div class="toolbar-info">
+            <span>Rheinfinanz Anlageberatung</span> &bull; Vorbereitungsbogen für das Kundengespräch
+        </div>
+        <div class="toolbar-actions">
+            <button type="button" class="btn-submit" onclick="submitPrepForm()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+                Online absenden
+            </button>
+            <button type="button" class="btn-print" onclick="window.print()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                Als PDF sichern / drucken
+            </button>
+        </div>
+    </div>
+
+    <!-- Web3Forms Form Envelope -->
+    <form id="prepForm" action="https://api.web3forms.com/submit" method="POST">
+        <!-- Web3Forms Access Key (from Rheinfinanz contact form) -->
+        <input type="hidden" name="access_key" value="9ec385a1-9719-448b-9e35-5436c0c58477">
+        <input type="hidden" name="subject" id="prep_subject" value="Neuer Vorbereitungsbogen ausgefüllt (Kundenberatung)">
+        <input type="hidden" name="from_name" value="Rheinfinanz Anlageberatung GmbH">
+        <!-- Automatic Confirmation Email to the Client -->
+        <input type="hidden" name="autoresponse"
+            value="Vielen Dank für die Übermittlung Ihres Vorbereitungsbogens an die Rheinfinanz Anlageberatung GmbH! Wir haben Ihre Angaben sicher erhalten. Herr Fabian Schulte-Drüggelte bereitet Ihr persönliches Beratungsgespräch nun individuell auf Basis Ihrer Angaben vor. Wir freuen uns auf unser gemeinsames Gespräch!">
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+        <!-- ==================== SEITE 1 ==================== -->
+        <div class="page">
+            <div>
+                <!-- Header -->
+                <header class="page-header">
+                    <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Anlageberatung GmbH" class="brand-logo-full">
+                    <div class="header-meta">
+                        <strong>Fabian Schulte-Drüggelte</strong><br>
+                        Unabhängiger Honorar-Finanzanlagenberater (§ 34h GewO)<br>
+                        kontakt@rheinfinanz.de &bull; +49 173 267 199 1
+                    </div>
+                </header>
+
+                <!-- Document Title -->
+                <div class="doc-title-bar">
+                    <h2>Vorbereitungsbogen für Ihr Beratungsgespräch</h2>
+                </div>
+
+                <p class="intro-text">
+                    Herzlich willkommen bei Rheinfinanz! Um unser gemeinsames Kennenlerngespräch optimal auf Ihre Lebenssituation und Wünsche
+                    auszurichten, füllen Sie bitte die folgenden Punkte vorab aus. Alle Angaben werden selbstverständlich streng
+                    vertraulich behandelt.
+                </p>
+
+                <!-- Abschnitt 1: Persönliche Daten -->
+                <section class="section-card">
+                    <div class="section-header">
+                        <span class="section-num">1</span>
+                        <h3 class="section-title">Persönliche Angaben & Lebenssituation</h3>
+                    </div>
+
+                    <div class="grid-2" style="margin-bottom: 6px;">
+                        <div class="field-group">
+                            <label class="field-label">Vor- und Nachname</label>
+                            <input type="text" name="kunde_name" id="kunde_name" class="field-input" placeholder="z. B. Max Mustermann" required>
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Geburtsdatum</label>
+                            <input type="text" name="geburtsdatum" class="field-input" placeholder="TT.MM.JJJJ">
+                        </div>
+                    </div>
+
+                    <div class="grid-2" style="margin-bottom: 6px;">
+                        <div class="field-group">
+                            <label class="field-label">E-Mail-Adresse</label>
+                            <input type="email" name="email" id="kunde_email" class="field-input" placeholder="name@beispiel.de" required>
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Telefon / Mobil</label>
+                            <input type="tel" name="telefon" class="field-input" placeholder="+49 ...">
+                        </div>
+                    </div>
+
+                    <div class="field-group" style="margin-bottom: 6px;">
+                        <label class="field-label">Anschrift (Straße, Hausnr., PLZ, Ort)</label>
+                        <input type="text" name="anschrift" class="field-input" placeholder="Musterstraße 1, 12345 Musterstadt">
+                    </div>
+
+                    <div class="grid-2" style="margin-bottom: 6px;">
+                        <div class="field-group">
+                            <label class="field-label">Beruf / Tätigkeit & Branche</label>
+                            <input type="text" name="beruf_branche" class="field-input" placeholder="z. B. Ingenieur, IT-Branche">
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Beruflicher Status</label>
+                            <div class="options-group" style="padding-top: 3px;">
+                                <label class="checkbox-label"><input type="checkbox" name="status_angestellt" class="checkbox-input"> Angestellt</label>
+                                <label class="checkbox-label"><input type="checkbox" name="status_selbststaendig" class="checkbox-input"> Selbstständig</label>
+                                <label class="checkbox-label"><input type="checkbox" name="status_beamter" class="checkbox-input"> Beamter</label>
+                                <label class="checkbox-label"><input type="checkbox" name="status_ruhestand" class="checkbox-input"> Ruhestand</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="field-group">
+                            <label class="field-label">Familienstand & Kinder</label>
+                            <input type="text" name="familienstand_kinder" class="field-input" placeholder="z. B. verheiratet, 2 Kinder (4 & 7 J.)">
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Wohnsituation</label>
+                            <div class="options-group" style="padding-top: 3px;">
+                                <label class="checkbox-label"><input type="checkbox" name="wohnen_miete" class="checkbox-input"> Zur Miete</label>
+                                <label class="checkbox-label"><input type="checkbox" name="wohnen_eigentum" class="checkbox-input"> Im Eigentum</label>
+                                <label class="checkbox-label"><input type="checkbox" name="wohnen_erwerb" class="checkbox-input"> Geplanter Erwerb</label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Abschnitt 2: Ziele & Wünsche -->
+                <section class="section-card">
+                    <div class="section-header">
+                        <span class="section-num">2</span>
+                        <h3 class="section-title">Ihre Anlageziele & Wünsche</h3>
+                    </div>
+
+                    <div class="field-group" style="margin-bottom: 6px;">
+                        <label class="field-label">Was ist der Hauptanlass unseres Gesprächs? (Mehrfachauswahl möglich)</label>
+                        <div class="options-group">
+                            <label class="checkbox-label"><input type="checkbox" name="ziel_vermoegensaufbau" class="checkbox-input"> Langfristiger Vermögensaufbau</label>
+                            <label class="checkbox-label"><input type="checkbox" name="ziel_altersvorsorge" class="checkbox-input"> Altersvorsorge / AV-Depot</label>
+                            <label class="checkbox-label"><input type="checkbox" name="ziel_depotoptimierung" class="checkbox-input"> Bestehendes Depot optimieren</label>
+                            <label class="checkbox-label"><input type="checkbox" name="ziel_einmalanlage" class="checkbox-input"> Größere Geldsumme anlegen</label>
+                            <label class="checkbox-label"><input type="checkbox" name="ziel_kinder" class="checkbox-input"> Vorsorge für Kinder / Enkel</label>
+                            <label class="checkbox-label"><input type="checkbox" name="ziel_immobilie" class="checkbox-input"> Geplanter Immobilienkauf</label>
+                        </div>
+                    </div>
+
+                    <!-- Highlight Box: Beträge & Horizont -->
+                    <div class="highlight-box">
+                        <div class="grid-2" style="margin-bottom: 6px;">
+                            <div class="field-group">
+                                <label class="field-label" style="color: var(--navy-primary);">Geplante Einmalanlage (ca.)</label>
+                                <input type="text" name="summe_einmalig" class="field-input" placeholder="z. B. 25.000 €" style="border-color: var(--gold);">
+                            </div>
+                            <div class="field-group">
+                                <label class="field-label" style="color: var(--navy-primary);">Geplante monatliche Sparrate (ca.)</label>
+                                <input type="text" name="summe_monatlich" class="field-input" placeholder="z. B. 500 € / Monat" style="border-color: var(--gold);">
+                            </div>
+                        </div>
+
+                        <div class="field-group">
+                            <label class="field-label" style="color: var(--navy-primary);">Geplanter Anlagehorizont für dieses Kapital</label>
+                            <div class="options-group">
+                                <label class="checkbox-label"><input type="checkbox" name="horizont_kurz" class="checkbox-input"> Bis 3 Jahre (kurzfristig)</label>
+                                <label class="checkbox-label"><input type="checkbox" name="horizont_mittel" class="checkbox-input"> 3 bis 7 Jahre (mittelfristig)</label>
+                                <label class="checkbox-label"><input type="checkbox" name="horizont_lang" class="checkbox-input"> Ab 7–10+ Jahre (langfristig)</label>
+                                <label class="checkbox-label"><input type="checkbox" name="horizont_rente" class="checkbox-input"> Bis zum Renteneintritt</label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Footer Seite 1 -->
+            <footer class="page-footer">
+                <div class="footer-left">
+                    <strong>Rheinfinanz Anlageberatung GmbH</strong> &bull; Rhöndorfer Str. 68, Gebäudeteil B, 53604 Bad Honnef &bull; <a href="impressum.html" target="_blank" style="color: inherit; text-decoration: underline;">Impressum</a> &bull; <a href="datenschutz.html" target="_blank" style="color: inherit; text-decoration: underline;">Datenschutz</a> &bull; <a href="erstinformation.html" target="_blank" style="color: inherit; text-decoration: underline;">Erstinformation</a>
+                </div>
+                <div class="footer-right">
+                    Seite 1 von 2
+                </div>
+            </footer>
+        </div>
+
+
+        <!-- ==================== SEITE 2 ==================== -->
+        <div class="page">
+            <div>
+                <!-- Header Seite 2 -->
+                <header class="page-header">
+                    <img src="assets/images/rheinfinanz-logo-complete.png" alt="Rheinfinanz Anlageberatung GmbH" class="brand-logo-full" style="height: 38px;">
+                    <div class="header-meta">
+                        Vorbereitungsbogen &bull; <strong>Vertrauliche Kundenselbstauskunft</strong><br>
+                        www.rheinfinanz.de &bull; kontakt@rheinfinanz.de
+                    </div>
+                </header>
+
+                <!-- Abschnitt 3: Finanzieller Überblick -->
+                <section class="section-card">
+                    <div class="section-header">
+                        <span class="section-num">3</span>
+                        <h3 class="section-title">Finanzieller Überblick (Grobe Orientierung)</h3>
+                    </div>
+                    <p style="font-size: 0.74rem; color: var(--text-light); margin-bottom: 7px;">
+                        Sie müssen hier keine exakten Cent-Beträge angeben – ungefähre Schätzwerte genügen vollkommen.
+                    </p>
+
+                    <div class="grid-2" style="margin-bottom: 6px;">
+                        <div class="field-group">
+                            <label class="field-label">Monatlicher Haushaltsüberschuss (ca.)</label>
+                            <input type="text" name="haushaltsueberschuss" class="field-input" placeholder="Freies Einkommen nach Fixkosten (in €)">
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Bestehender Notgroschen / Liquidität</label>
+                            <input type="text" name="notgroschen" class="field-input" placeholder="Guthaben auf Tagesgeld / Giro (in €)">
+                        </div>
+                    </div>
+
+                    <div class="grid-2" style="margin-bottom: 6px;">
+                        <div class="field-group">
+                            <label class="field-label">Bestehende Wertpapierdepots / Fonds</label>
+                            <input type="text" name="depotwert" class="field-input" placeholder="Ungefährer Depotgesamtwert (in €)">
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Immobilienvermögen (Verkehrswert ca.)</label>
+                            <input type="text" name="immobilienwert" class="field-input" placeholder="Selbstgenutzt / vermietet (in €)">
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="field-group">
+                            <label class="field-label">Sonstige Vermögenswerte</label>
+                            <input type="text" name="sonstige_werte" class="field-input" placeholder="Bausparer, Lebensversicherungen, Gold etc.">
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Bestehende Kredite / Verbindlichkeiten</label>
+                            <input type="text" name="kredite_verbindlichkeiten" class="field-input" placeholder="Restschuld & monatl. Rate (in €)">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Abschnitt 4: Vorerfahrung -->
+                <section class="section-card">
+                    <div class="section-header">
+                        <span class="section-num">4</span>
+                        <h3 class="section-title">Ihre Vorerfahrung an den Kapitalmärkten</h3>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" style="margin-bottom: 5px;">Wie schätzen Sie Ihre bisherigen Erfahrungen mit Wertpapieren (Aktien, ETFs, Fonds) ein?</label>
+                        <div style="display: flex; flex-direction: column; gap: 6px;">
+                            <label class="checkbox-label" style="align-items: flex-start;">
+                                <input type="checkbox" name="erfahrung_einsteiger" class="checkbox-input" style="margin-top: 2px;">
+                                <span><strong>Einsteiger / Neuling:</strong> Ich habe bisher keine oder nur geringe Vorerfahrung und wünsche mir eine verständliche Einführung in das Thema ETF-Investieren.</span>
+                            </label>
+                            <label class="checkbox-label" style="align-items: flex-start;">
+                                <input type="checkbox" name="erfahrung_selbststaendig" class="checkbox-input" style="margin-top: 2px;">
+                                <span><strong>Praktische Vorerfahrung:</strong> Ich investiere bereits eigenständig (z. B. Sparpläne über Neobroker/Onlinebanking) und suche eine professionelle Strategie & Strukturierung.</span>
+                            </label>
+                            <label class="checkbox-label" style="align-items: flex-start;">
+                                <input type="checkbox" name="erfahrung_bankberater" class="checkbox-input" style="margin-top: 2px;">
+                                <span><strong>Erfahrung über Bank / Vermittler:</strong> Ich besitze bereits Produkte (z. B. Mischfonds, Zertifikate, Rentenversicherungen) und möchte diese neutral überprüfen lassen.</span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Abschnitt 5: Persönliche Wünsche / Fragen -->
+                <section class="section-card">
+                    <div class="section-header">
+                        <span class="section-num">5</span>
+                        <h3 class="section-title">Ihr persönlicher Schwerpunkt für unser Gespräch</h3>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" style="margin-bottom: 4px;">Welche Fragen oder Themen liegen Ihnen besonders am Herzen? Was möchten Sie im Termin unbedingt ansprechen?</label>
+                        <textarea name="schwerpunkte_fragen" class="field-textarea" placeholder="Ihre Fragen, Gedanken oder konkreten Anliegen für unser Gespräch..."></textarea>
+                    </div>
+                </section>
+
+                <!-- Wichtiger Vorab-Übermittlungshinweis -->
+                <div class="return-box">
+                    <div class="return-box-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                    </div>
+                    <div class="return-box-text">
+                        <strong>Wichtiger Hinweis zur Vorbereitung:</strong><br>
+                        Bitte übermitteln Sie diesen Bogen vorab vor unserem Termin (über den Button <strong>„Online absenden“</strong> oder per E-Mail an <strong>kontakt@rheinfinanz.de</strong>), damit ich mich optimal auf Ihre individuelle Situation vorbereiten kann.
+                    </div>
+                </div>
+
+                <!-- Rechtliche Einwilligung (DSGVO & § 15 FinVermV) -->
+                <div style="margin-top: 6px; padding: 6px 11px; background: #FFFFFF; border: 1px solid var(--border-light); border-radius: 5px;">
+                    <label class="checkbox-label" style="align-items: flex-start; cursor: pointer; font-size: 0.72rem; line-height: 1.35; color: var(--text-dark);">
+                        <input type="checkbox" name="datenschutz_zustimmung" id="datenschutz_zustimmung" class="checkbox-input" style="margin-top: 1px;" required>
+                        <span>
+                            Ich stimme der vertraulichen Verarbeitung meiner Angaben zur Vorbereitung des Beratungsgesprächs gemäß der <a href="datenschutz.html" target="_blank" style="color: var(--navy-primary); text-decoration: underline; font-weight: 500;">Datenschutzerklärung</a> zu. Die gesetzliche <a href="erstinformation.html" target="_blank" style="color: var(--navy-primary); text-decoration: underline; font-weight: 500;">Erstinformation nach § 15 FinVermV</a> habe ich zur Kenntnis genommen.
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Footer Seite 2 -->
+            <footer class="page-footer">
+                <div class="footer-left">
+                    <strong>Rheinfinanz Anlageberatung GmbH</strong> &bull; Unabhängige Honorarberatung (§ 34h GewO) &bull; IHK-Reg.-Nr.: D-H-110-ZPIU-69 &bull; <a href="impressum.html" target="_blank" style="color: inherit; text-decoration: underline;">Impressum</a> &bull; <a href="datenschutz.html" target="_blank" style="color: inherit; text-decoration: underline;">Datenschutz</a> &bull; <a href="erstinformation.html" target="_blank" style="color: inherit; text-decoration: underline;">Erstinformation</a>
+                </div>
+                <div class="footer-right">
+                    Seite 2 von 2
+                </div>
+            </footer>
+        </div>
+    </form>
+
+    <!-- Bottom Submit Button on Screen (for easy completion) -->
+    <div class="bottom-action-bar">
+        <button type="button" class="btn-submit" onclick="submitPrepForm()" style="padding: 12px 28px; font-size: 0.95rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            Vorbereitungsbogen jetzt vertraulich absenden
+        </button>
+    </div>
+
+    <!-- Success Confirmation Modal -->
+    <div id="statusModal" class="status-modal">
+        <div class="status-card">
+            <div class="status-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h3 id="modalTitle">Erfolgreich übermittelt!</h3>
+            <p id="modalMsg">
+                Vielen Dank für Ihre Vorbereitung! Ihre Angaben wurden sicher an Fabian Schulte-Drüggelte übermittelt.
+                Ihr persönliches Beratungsgespräch wird nun optimal für Sie vorbereitet.
+            </p>
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button type="button" class="status-close-btn" onclick="closeModal()">Fertig</button>
+                <button type="button" class="btn-print" onclick="window.print()" style="color: var(--navy-dark); background: var(--bg-card); border-color: var(--border-light);">
+                    Kopie als PDF speichern
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script for Web3Forms AJAX Submission -->
+    <script>
+        async function submitPrepForm() {
+            const form = document.getElementById('prepForm');
+            const nameInput = document.getElementById('kunde_name');
+            const emailInput = document.getElementById('kunde_email');
+
+            if (!nameInput.value.trim()) {
+                alert('Bitte tragen Sie Ihren Namen ein.');
+                nameInput.focus();
+                return;
+            }
+
+            if (!emailInput.value.trim()) {
+                alert('Bitte tragen Sie Ihre E-Mail-Adresse ein.');
+                emailInput.focus();
+                return;
+            }
+
+            const consentCheckbox = document.getElementById('datenschutz_zustimmung');
+            if (!consentCheckbox.checked) {
+                alert('Bitte bestätigen Sie die Kenntnisnahme der Datenschutzerklärung und der Erstinformation, um den Bogen abzusenden.');
+                consentCheckbox.focus();
+                return;
+            }
+
+            const submitButtons = document.querySelectorAll('.btn-submit');
+            submitButtons.forEach(btn => {
+                btn.disabled = true;
+                btn.innerHTML = 'Wird übermittelt...';
+            });
+
+            const formData = new FormData(form);
+            formData.set('subject', 'Vorbereitungsbogen: ' + nameInput.value.trim());
+
+            // Generate direct link to pre-filled 2-page PDF view for Fabian's archive
+            const params = new URLSearchParams();
+            for (const [key, value] of formData.entries()) {
+                if (key !== 'access_key' && key !== 'botcheck' && key !== 'autoresponse' && key !== 'from_name' && value) {
+                    params.append(key, value);
+                }
+            }
+            const prefillUrl = window.location.origin + window.location.pathname + '?' + params.toString();
+            formData.append('pdf_archiv_link', prefillUrl);
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    const modal = document.getElementById('statusModal');
+                    const modalMsg = document.getElementById('modalMsg');
+                    modalMsg.innerHTML = 'Vielen Dank, <strong>' + escapeHtml(nameInput.value.trim()) + '</strong>!<br><br>' +
+                        'Ihre Angaben wurden sicher und verschlüsselt an Fabian Schulte-Drüggelte übermittelt. Eine Bestätigung wurde soeben an <strong>' + escapeHtml(emailInput.value.trim()) + '</strong> gesendet.<br><br>' +
+                        '<span style="font-size: 0.82rem; color: #64748B;">Möchten Sie eine Kopie Ihrer Angaben als PDF für Ihre Unterlagen abspeichern?</span>';
+                    modal.classList.add('active');
+                } else {
+                    alert('Es gab ein Problem bei der Übermittlung. Bitte versuchen Sie es erneut oder senden Sie den Bogen per E-Mail an kontakt@rheinfinanz.de.');
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('Verbindungsfehler beim Absenden. Bitte prüfen Sie Ihre Internetverbindung oder senden Sie den Bogen per E-Mail an kontakt@rheinfinanz.de.');
+            } finally {
+                submitButtons.forEach(btn => {
+                    btn.disabled = false;
+                    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> Online absenden';
+                });
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('statusModal').classList.remove('active');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Auto-populate form if opened via prefilled archive link
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const keys = [...params.keys()];
+            if (keys.length > 0) {
+                keys.forEach(key => {
+                    const values = params.getAll(key);
+                    values.forEach(val => {
+                        const el = document.querySelector(`[name="${key}"]`);
+                        if (el) {
+                            if (el.type === 'checkbox') {
+                                el.checked = true;
+                            } else {
+                                el.value = val;
+                            }
+                        }
+                    });
+                });
+
+                const toolbarInfo = document.querySelector('.toolbar-info');
+                if (toolbarInfo) {
+                    toolbarInfo.innerHTML = '<span>Kunden-Vorbereitungsbogen</span> &bull; Ausgefüllte Ansicht für Ihre Kundenakte (2 Seiten)';
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
