@@ -216,10 +216,10 @@
         }
 
         .header-kunde-sync {
-            width: 310px;
-            min-width: 200px;
-            max-width: 420px;
-            height: 22px;
+            width: 160px;
+            min-width: 140px;
+            max-width: 360px;
+            height: 21px;
             display: inline-block;
             font-size: 0.72rem;
             vertical-align: middle;
@@ -455,8 +455,6 @@
             }
 
             .header-kunde-sync {
-                width: 310px !important;
-                max-width: 420px !important;
                 border: 1px solid #D1D5DB !important;
                 background: white !important;
                 -webkit-print-color-adjust: exact !important;
@@ -1024,19 +1022,20 @@
             const cleanVal = val || '';
             const len = cleanVal.length;
 
-            // Dynamische Skalierung: Basisbreite 310px, wächst bei überlangen Namen bis 420px
-            let targetWidth = 310;
+            // Kompakte Basisbreite von 160px; wächst erst geschmeidig mit, wenn der Name länger ist
+            let targetWidth = 160;
             let targetFontSize = '0.72rem';
 
-            if (len > 35) {
-                targetWidth = Math.min(420, 310 + (len - 35) * 6.5);
-                if (len > 44) {
+            if (len > 18) {
+                // Berechne den genauen Platzbedarf: ca. 6.8px pro Zeichen + 22px Padding
+                targetWidth = Math.min(360, Math.round(len * 6.8 + 22));
+
+                // Sanfte Schriftgrößen-Anpassung bei sehr langen Namen (> 40 Zeichen)
+                if (len > 42) {
                     targetFontSize = '0.64rem';
-                } else if (len > 38) {
+                } else if (len > 32) {
                     targetFontSize = '0.68rem';
                 }
-            } else if (len <= 15 && len > 0) {
-                targetWidth = 240;
             }
 
             headerKundeInputs.forEach(input => {
