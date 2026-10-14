@@ -120,8 +120,7 @@
             padding: 2px 7px;
             border-radius: 4px;
             font-weight: 600;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
+            letter-spacing: 0.02em;
         }
 
         /* Section Styling */
@@ -745,14 +744,14 @@
                         <div style="background: white; padding: 7px 10px; border-radius: 4px; border: 1px solid var(--border-light);">
                             <span style="font-size: 0.72rem; color: var(--gold-dark); font-weight: 700; text-transform: uppercase;">Wachstumsbaustein (Aktien-ETFs)</span>
                             <div style="display: flex; align-items: baseline; gap: 6px; margin-top: 2px;">
-                                <input type="text" class="field-input" style="width: 60px; font-weight: 700; text-align: center;" value="80 %">
+                                <input type="text" id="quote_aktien" class="field-input" style="width: 65px; font-weight: 700; text-align: center;" placeholder="z. B. 80 %">
                                 <span style="font-size: 0.75rem; color: var(--text-dark);">Globale Diversifikation (Welt-Aktien / All-World)</span>
                             </div>
                         </div>
                         <div style="background: white; padding: 7px 10px; border-radius: 4px; border: 1px solid var(--border-light);">
                             <span style="font-size: 0.72rem; color: var(--navy-primary); font-weight: 700; text-transform: uppercase;">Stabilitätsbaustein (Zins / Liquidität)</span>
                             <div style="display: flex; align-items: baseline; gap: 6px; margin-top: 2px;">
-                                <input type="text" class="field-input" style="width: 60px; font-weight: 700; text-align: center;" value="20 %">
+                                <input type="text" id="quote_anleihen" class="field-input" style="width: 65px; font-weight: 700; text-align: center;" placeholder="z. B. 20 %">
                                 <span style="font-size: 0.75rem; color: var(--text-dark);">Euro-Staatsanleihen / Zins-Tagesgeld</span>
                             </div>
                         </div>
@@ -1082,6 +1081,16 @@
             const sparrateSollParam = params.get('sparrate_soll') || (params.get('sparrate') && !document.getElementById('sparrate_ist').value);
             if (sparrateSollParam && document.getElementById('sparrate_soll')) {
                 document.getElementById('sparrate_soll').value = sparrateSollParam;
+            }
+
+            // Quoten Aktien & Anleihen
+            const aktienParam = params.get('aktien');
+            if (aktienParam && document.getElementById('quote_aktien')) {
+                document.getElementById('quote_aktien').value = aktienParam.includes('%') ? aktienParam : aktienParam + ' %';
+            }
+            const anleihenParam = params.get('anleihen');
+            if (anleihenParam && document.getElementById('quote_anleihen')) {
+                document.getElementById('quote_anleihen').value = anleihenParam.includes('%') ? anleihenParam : anleihenParam + ' %';
             }
 
             // Zielfonds
