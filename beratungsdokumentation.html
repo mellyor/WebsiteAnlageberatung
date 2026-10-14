@@ -216,8 +216,8 @@
         }
 
         .header-kunde-sync {
-            width: 160px;
-            min-width: 140px;
+            width: 105px;
+            min-width: 105px;
             max-width: 360px;
             height: 21px;
             display: inline-block;
@@ -225,7 +225,7 @@
             vertical-align: middle;
             font-weight: 500;
             color: var(--navy-dark);
-            transition: width 0.15s ease, font-size 0.15s ease;
+            transition: width 0.18s ease, font-size 0.18s ease;
         }
 
         /* Checkbox & Options */
@@ -1022,19 +1022,19 @@
             const cleanVal = val || '';
             const len = cleanVal.length;
 
-            // Kompakte Basisbreite von 160px; wächst erst geschmeidig mit, wenn der Name länger ist
-            let targetWidth = 160;
+            // Sehr kompakte Basisbreite zu Beginn: 105px (umschließt exakt den Platzhalter "Kundenname")
+            let targetWidth = 105;
             let targetFontSize = '0.72rem';
 
-            if (len > 18) {
-                // Berechne den genauen Platzbedarf: ca. 6.8px pro Zeichen + 22px Padding
-                targetWidth = Math.min(360, Math.round(len * 6.8 + 22));
-
-                // Sanfte Schriftgrößen-Anpassung bei sehr langen Namen (> 40 Zeichen)
-                if (len > 42) {
+            if (len > 12) {
+                if (len > 40) {
                     targetFontSize = '0.64rem';
-                } else if (len > 32) {
+                    targetWidth = Math.min(350, Math.round(len * 5.8 + 20));
+                } else if (len > 28) {
                     targetFontSize = '0.68rem';
+                    targetWidth = Math.min(350, Math.round(len * 6.4 + 20));
+                } else {
+                    targetWidth = Math.min(350, Math.round(len * 6.8 + 20));
                 }
             }
 
