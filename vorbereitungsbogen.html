@@ -266,6 +266,23 @@
             box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
         }
 
+        .field-input.input-invalid {
+            border-color: #DC2626 !important;
+            background-color: #FEF2F2 !important;
+        }
+
+        .field-input.input-invalid:focus {
+            box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2) !important;
+        }
+
+        .field-hint-error {
+            color: #DC2626;
+            font-size: 0.67rem;
+            margin-top: 2px;
+            font-weight: 500;
+            display: none;
+        }
+
         /* Checkbox & Options */
         .options-group {
             display: flex;
@@ -642,6 +659,7 @@
                         <div class="field-group">
                             <label class="field-label">E-Mail-Adresse</label>
                             <input type="email" name="email" id="kunde_email" class="field-input" placeholder="name@beispiel.de" required>
+                            <span id="email_error_hint" class="field-hint-error">Bitte E-Mail-Format prüfen (z. B. name@beispiel.de)</span>
                         </div>
                         <div class="field-group">
                             <label class="field-label">Telefon / Mobil</label>
@@ -949,6 +967,40 @@
 
     <!-- Script for Web3Forms AJAX Submission -->
     <script>
+        const kundeEmailInput = document.getElementById('kunde_email');
+        const emailHint = document.getElementById('email_error_hint');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        function validateEmailField(showVisuals = true) {
+            if (!kundeEmailInput) return true;
+            const val = kundeEmailInput.value.trim();
+            if (!val) {
+                kundeEmailInput.classList.remove('input-invalid');
+                if (emailHint) emailHint.style.display = 'none';
+                return false;
+            }
+            const isValid = emailRegex.test(val);
+            if (!isValid && showVisuals) {
+                kundeEmailInput.classList.add('input-invalid');
+                if (emailHint) emailHint.style.display = 'block';
+            } else if (isValid) {
+                kundeEmailInput.classList.remove('input-invalid');
+                if (emailHint) emailHint.style.display = 'none';
+            }
+            return isValid;
+        }
+
+        if (kundeEmailInput) {
+            kundeEmailInput.addEventListener('blur', () => {
+                if (kundeEmailInput.value.trim()) validateEmailField(true);
+            });
+            kundeEmailInput.addEventListener('input', () => {
+                if (kundeEmailInput.classList.contains('input-invalid')) {
+                    validateEmailField(true);
+                }
+            });
+        }
+
         async function submitPrepForm() {
             const form = document.getElementById('prepForm');
             const nameInput = document.getElementById('kunde_name');
@@ -961,7 +1013,6 @@
             }
 
             const emailValue = emailInput.value.trim();
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
             if (!emailValue) {
                 alert('Bitte tragen Sie Ihre E-Mail-Adresse ein.');
@@ -969,10 +1020,20 @@
                 return;
             }
 
-            if (!emailRegex.test(emailValue)) {
-                alert('Bitte geben Sie eine gültige E-Mail-Adresse ein (z. B. name@beispiel.de).');
-                emailInput.focus();
-                return;
+            const isValidEmail = emailRegex.test(emailValue);
+
+            if (!isValidEmail) {
+                validateEmailField(true);
+                const proceed = confirm(
+                    'Hinweis zum E-Mail-Format:\n\n' +
+                    'Die Eingabe "' + emailValue + '" entspricht nicht dem üblichen E-Mail-Format (z. B. name@beispiel.de).\n\n' +
+                    '• Klicken Sie auf "Abbrechen", um Ihre E-Mail-Adresse zu korrigieren.\n' +
+                    '• Klicken Sie auf "OK", wenn Sie den Vorbereitungsbogen trotzdem so absenden möchten.'
+                );
+                if (!proceed) {
+                    emailInput.focus();
+                    return;
+                }
             }
 
             const consentCheckbox = document.getElementById('datenschutz_zustimmung');
@@ -989,9 +1050,20 @@
             });
 
             const formData = new FormData(form);
-            formData.set('subject', 'Vorbereitungsbogen: ' + nameInput.value.trim());
             formData.set('name', nameInput.value.trim());
-            formData.set('email', emailValue);
+
+            if (isValidEmail) {
+                formData.set('subject', 'Vorbereitungsbogen: ' + nameInput.value.trim());
+                formData.set('email', emailValue);
+            } else {
+                // Falls die Eingabe keine gültige E-Mail war (z. B. Notiz oder Tippfehler),
+                // nutzen wir eine sichere Fallback-Adresse, damit Web3Forms die Mail 100% verlässlich an Fabian zustellt.
+                formData.set('subject', 'Vorbereitungsbogen: ' + nameInput.value.trim() + ' [Hinweis: E-Mail-Feld enthielt: "' + emailValue + '"]');
+                formData.set('email', 'kontakt@rheinfinanz.de');
+                formData.append('HINWEIS_ZUR_EMAIL', 'Kunde hat folgendes in das E-Mail-Feld eingetragen: "' + emailValue + '" (ungültiges Format)');
+                // Autoresponder entfernen, damit Web3Forms nicht an eine ungültige Adresse sendet und blockiert
+                formData.delete('autoresponse');
+            }
 
             // Generate direct link to pre-filled 2-page PDF view for Fabian's archive
             const params = new URLSearchParams();
@@ -1033,8 +1105,12 @@
                 if (result.success) {
                     const modal = document.getElementById('statusModal');
                     const modalMsg = document.getElementById('modalMsg');
+                    const confirmationText = isValidEmail
+                        ? 'Eine Bestätigung wurde soeben an <strong>' + escapeHtml(emailValue) + '</strong> gesendet.<br><br>'
+                        : '<span style="color: #4B5563; font-size: 0.82rem;">(Hinweis: Da keine gültige E-Mail-Adresse angegeben war, wurde keine automatische Eingangsbestätigung versendet. Ihre Angaben liegen der Rheinfinanz Anlageberatung GmbH jedoch vollständig vor.)</span><br><br>';
+
                     modalMsg.innerHTML = 'Vielen Dank, <strong>' + escapeHtml(nameInput.value.trim()) + '</strong>!<br><br>' +
-                        'Ihre Angaben wurden sicher und verschlüsselt an die Rheinfinanz Anlageberatung GmbH übermittelt. Eine Bestätigung wurde soeben an <strong>' + escapeHtml(emailValue) + '</strong> gesendet.<br><br>' +
+                        'Ihre Angaben wurden sicher und verschlüsselt an die Rheinfinanz Anlageberatung GmbH übermittelt. ' + confirmationText +
                         '<span style="font-size: 0.82rem; color: #64748B;">Möchten Sie eine Kopie Ihrer Angaben als PDF für Ihre Unterlagen abspeichern?</span>';
                     modal.classList.add('active');
                 } else {
